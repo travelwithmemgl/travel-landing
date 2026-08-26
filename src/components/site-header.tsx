@@ -44,10 +44,10 @@ export function SiteHeader({ dict, lang }: { dict: Dictionary; lang: Locale }) {
           <Image
             src="/logo.png"
             alt="Travel With Me"
-            width={1600}
-            height={1264}
+            width={1596}
+            height={979}
             priority
-            className={`h-9 w-auto transition duration-300 sm:h-11 ${
+            className={`h-10 w-auto transition duration-300 sm:h-12 ${
               solid ? "" : "brightness-0 invert"
             }`}
           />
