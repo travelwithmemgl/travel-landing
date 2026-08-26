@@ -1,0 +1,454 @@
+{
+  "meta": {
+    "title": "Travel With Me — Start a new chapter of adventure",
+    "description": "Mongolia tours by Travel With Me LLC: the Naadam Festival, snow leopard tracking in the Altai, Enduro motorcycle rides across the steppe and taimen fishing on the Onon river."
+  },
+  "nav": {
+    "about": "About us",
+    "experiences": "Experiences",
+    "trips": "Tours",
+    "services": "Services",
+    "how": "How it works",
+    "contact": "Contact"
+  },
+  "header": {
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "language": "Language",
+    "changeLanguage": "Change language"
+  },
+  "hero": {
+    "eyebrow": "Travel With Me",
+    "title": "Mongolia",
+    "slogan": "Start a new chapter of adventure with Travel With Me.",
+    "alt": "Layered green hills and forested ridges in Gorkhi-Terelj National Park",
+    "explore": "Explore",
+    "fields": {
+      "activity": {
+        "label": "Interest",
+        "value": "Naadam / Enduro / Fishing"
+      },
+      "location": {
+        "label": "Destination",
+        "value": "Khovd, Khentii, Gobi"
+      },
+      "date": {
+        "label": "Dates",
+        "value": "June – September"
+      },
+      "budget": {
+        "label": "Budget",
+        "value": "$0 – $2500"
+      }
+    }
+  },
+  "proof": {
+    "brand": "Travel With Me LLC",
+    "rating": "Inbound & outbound tour operator"
+  },
+  "statement": {
+    "line1": "Start a new chapter",
+    "line2": "of adventure with us"
+  },
+  "value": {
+    "badge": "01 About us",
+    "line1": "Travel With Me",
+    "line2": "since 2025",
+    "body": "Our team founded Travel With Me LLC on 20 January 2025 to organise domestic and international journeys for individual travellers and organisations alike.",
+    "mission": "Our mission: to make a real contribution to the development of Mongolia's tourism industry — valuing sustainability, quality of service and cultural exchange.",
+    "cta": "See our tours",
+    "prev": "Previous",
+    "next": "Next"
+  },
+  "slides": {
+    "altai": {
+      "chip": "Altai",
+      "title": "The Mongol Altai range",
+      "caption": "High peaks where snow leopards and argali live",
+      "alt": "The Potanin glacier in the Altai Tavan Bogd massif"
+    },
+    "khangai": {
+      "chip": "Khangai",
+      "title": "The Khangai region",
+      "caption": "Green hills and nomadic summer camps",
+      "alt": "A green valley and mountains in Gorkhi-Terelj"
+    },
+    "khuvsgul": {
+      "chip": "Khovsgol",
+      "title": "Lake Khovsgol",
+      "caption": "The blue pearl of Mongolia",
+      "alt": "The forested shoreline of Lake Khovsgol"
+    },
+    "gobi": {
+      "chip": "Gobi",
+      "title": "The Gobi Desert",
+      "caption": "Camel caravans and sand dunes",
+      "alt": "The dune ridge of Khongoryn Els in the Gobi"
+    },
+    "steppe": {
+      "chip": "Steppe",
+      "title": "The open steppe",
+      "caption": "Herds, and a horizon with no end",
+      "alt": "A ger camp on the steppe in Dornogovi province"
+    }
+  },
+  "experiences": {
+    "badge": "02 Featured experiences",
+    "line1": "Five ways",
+    "line2": "to meet Mongolia",
+    "intro": "Each of these journeys can be joined as an open group departure or built privately around your own dates.",
+    "readMore": "Plan this trip",
+    "items": {
+      "mongolia": {
+        "kicker": "Nature & heritage",
+        "title": "A land of natural wonders and cultural heritage",
+        "lead": "Mongolia, the cradle of nomadic civilization, is a land of extraordinary natural beauty.",
+        "body": [
+          "The majestic Altai and Khangai mountain ranges, the pristine landscapes of Lake Khovsgol and the vast Gobi Desert together create a breathtaking panorama of steppe, lakes and dramatic rock formations.",
+          "Traveling through Mongolia offers a unique opportunity to connect with nature, discover inner peace and experience the rich traditions of nomadic culture. We invite you to explore Mongolia's remarkable landscapes and its distinctive cultural heritage through our carefully designed travel experiences."
+        ],
+        "highlights": [
+          "The majestic Altai and Khangai ranges",
+          "The pristine shores of Lake Khovsgol",
+          "The vast Gobi Desert and its rock formations"
+        ],
+        "alt": "A green valley in Gorkhi-Terelj National Park",
+        "altInset": "White gers lined up on the open steppe"
+      },
+      "naadam": {
+        "kicker": "July · The Three Manly Games",
+        "title": "The Naadam Festival",
+        "lead": "Held every July, Naadam is Mongolia's most celebrated national festival.",
+        "body": [
+          "It showcases the strength, skill and endurance of the Mongolian people through the traditional Three Manly Games: wrestling, horse racing and archery. Powerful wrestlers compete in the arena, swift horses race across the open steppe, and skilled archers demonstrate their remarkable precision.",
+          "The festival is not only a sporting event but a vibrant expression of Mongolia's cultural heritage. Visitors can experience traditional games, music and dance performances, taste authentic Mongolian cuisine, wear a traditional deel for memorable photos, and immerse themselves in a festive atmosphere that is truly unique in the world."
+        ],
+        "highlights": [
+          "Wrestling in the arena",
+          "Horse racing across the steppe",
+          "Archery and traditional games"
+        ],
+        "alt": "Riders and spectators at the Naadam horse race",
+        "altInset": "Wrestlers grappling on the Naadam field"
+      },
+      "enduro": {
+        "kicker": "Full of energy and adrenaline",
+        "title": "Enduro & moto tours",
+        "lead": "An adventure filled with adrenaline across Mongolia's vast steppe and unique landscapes.",
+        "body": [
+          "Riding a motorcycle here not only enhances balance and concentration, it also brings a powerful sense of freedom as you race against the wind — a refreshing escape and a natural way to release stress.",
+          "Discover the true thrill of speed, strength, endurance and courage as you ride through the boundless Mongolian steppe: an unforgettable adventure unlike anywhere else in the world."
+        ],
+        "highlights": [
+          "Off-road routes across open steppe",
+          "Professional guide and support vehicle",
+          "Motorcycle and protective gear included"
+        ],
+        "alt": "An open road running toward the mountains of Bayan-Olgii",
+        "altInset": "A herder on a motorcycle driving his flock across the steppe"
+      },
+      "snowLeopard": {
+        "kicker": "Khovd Province · Altai Mountains",
+        "title": "Snow leopard tour — where nature and culture meet",
+        "lead": "Khovd Province is one of the most remarkable travel destinations in western Mongolia.",
+        "body": [
+          "Surrounded by towering mountains, crystal-clear lakes and vast open landscapes, this region brings pristine nature, rich nomadic culture and adventure travel together. Within the rugged cliffs and high peaks of the Altai live some of the world's rarest wildlife, including the elusive snow leopard, argali sheep and Siberian ibex, while golden eagles soar high across the skies.",
+          "Khovd is also one of the most ethnically diverse regions of Mongolia. The Zakhchin, Dorvod, Uriankhai, Torguud, Myangad, Oold and Kazakh peoples all continue to preserve their unique traditions and lifestyles. Travelers have the opportunity to experience authentic nomadic life, taste traditional cuisine, enjoy local music and witness centuries-old cultural customs.",
+          "The region is home to breathtaking natural attractions, including Khar Us Lake National Park, the dramatic Altai mountain ranges and the ancient rock paintings of Khoid Tsenkher Cave. Together with its untouched steppe, these wonders make Khovd a captivating destination for travelers seeking both natural beauty and cultural discovery."
+        ],
+        "highlights": [
+          "Snow leopard, argali, ibex and golden eagle",
+          "Seven ethnic groups and their living traditions",
+          "Khar Us Lake National Park and Khoid Tsenkher Cave"
+        ],
+        "alt": "A wild snow leopard on a rocky Mongolian ridge",
+        "altInset": "Kazakh eagle hunters on horseback before the Altai mountains"
+      },
+      "fishing": {
+        "kicker": "Batshireet · Onon river",
+        "title": "Fishing in the Khentii taiga",
+        "lead": "Batshireet, in the north-east of the Khentii range, is one of Mongolia's most beautiful taiga regions.",
+        "body": [
+          "The area lies within the Onon-Balj National Park and the basin of the Onon river, and is known for untouched wilderness: clear rivers, dense taiga forest and wide open valleys.",
+          "Its pristine taiga and clear water hold Mongolia's great freshwater fish — taimen, lenok, grayling and pike. Combined with rare wildlife and wild berries, this makes Batshireet an ideal region for sport fishing and nature-focused travel."
+        ],
+        "highlights": [
+          "Taimen, lenok, grayling and pike",
+          "Onon-Balj National Park",
+          "Clear rivers and untouched taiga forest"
+        ],
+        "alt": "The green banks of the Onon river",
+        "altInset": "A taimen caught on the Uur river before release"
+      }
+    }
+  },
+  "gallery": {
+    "badge": "03 In pictures",
+    "title": "The colours of Mongolia",
+    "caption": "The landscapes, animals and traditions waiting for you on the road.",
+    "alts": [
+      "Wrestlers grappling on the Naadam field",
+      "Archers preparing to shoot at Naadam",
+      "A Kazakh eagle hunter holding his golden eagle",
+      "Ancient rock paintings near Khoid Tsenkher",
+      "The dunes of Khongoryn Els with mountains behind",
+      "Reindeer in the Khovsgol taiga",
+      "An eagle hunter seated inside his ger",
+      "Naadam horses racing across the open steppe"
+    ]
+  },
+  "trips": {
+    "badge": "Featured departures",
+    "title": "Choose your route",
+    "intro": "Six signature journeys across Mongolia — join an open group or ask us to build the same route privately.",
+    "discover": "Search",
+    "slotLeft": "{n} places left",
+    "empty": "No tour matches this filter — try widening the budget or the dates.",
+    "showDetails": "Show details for {name}",
+    "hideDetails": "Hide details for {name}",
+    "filters": {
+      "destination": "Destination",
+      "category": "Category",
+      "price": "Price",
+      "date": "Dates"
+    },
+    "placeholders": {
+      "destination": "Any province",
+      "category": "Any type",
+      "price": "Any budget",
+      "date": "Any month"
+    },
+    "regions": {
+      "tuv": "Tuv & Ulaanbaatar",
+      "umnugovi": "Umnugovi",
+      "khuvsgul": "Khovsgol",
+      "khovd": "Khovd",
+      "khentii": "Khentii"
+    },
+    "types": {
+      "open": "Open group",
+      "private": "Private",
+      "adventure": "Adventure"
+    },
+    "prices": {
+      "lt1000": "Under $1000",
+      "mid": "$1000 – $1500",
+      "gt1500": "Over $1500"
+    },
+    "dates": {
+      "jun": "June",
+      "jul": "July",
+      "aug": "August",
+      "sep": "September",
+      "any": "Any month"
+    },
+    "detailLabels": {
+      "accommodation": "Stay",
+      "transport": "Transport",
+      "meals": "Meals"
+    },
+    "items": {
+      "naadam": {
+        "name": "The Naadam Festival",
+        "region": "Ulaanbaatar & Tuv",
+        "dates": "10–15 July",
+        "alt": "Naadam horses racing across the open steppe",
+        "accommodation": "Hotel and ger camp, 5 nights",
+        "transport": "Shared coach",
+        "meals": "Three meals a day"
+      },
+      "snow-leopard": {
+        "name": "Snow leopard tour",
+        "region": "Khovd, Mongol Altai",
+        "dates": "8–17 September",
+        "alt": "The snow-covered peaks of Altai Tavan Bogd",
+        "accommodation": "Ger camp and tents, 9 nights",
+        "transport": "4x4 and horseback",
+        "meals": "Full board in the field"
+      },
+      "enduro": {
+        "name": "Enduro & moto tour",
+        "region": "Tuv & Dundgovi",
+        "dates": "15–21 June",
+        "alt": "Gobi dunes below a mountain range",
+        "accommodation": "Tents and ger camps, 6 nights",
+        "transport": "Motorcycle and support vehicle",
+        "meals": "Three meals a day"
+      },
+      "fishing": {
+        "name": "Batshireet fishing",
+        "region": "Khentii, Onon river",
+        "dates": "1–7 September",
+        "alt": "A taimen from the Onon-Uur basin",
+        "accommodation": "Riverside camp, 6 nights",
+        "transport": "4x4",
+        "meals": "Full board in the field"
+      },
+      "gobi": {
+        "name": "The great Gobi",
+        "region": "Umnugovi",
+        "dates": "5–12 August",
+        "alt": "The wide dune field of Khongoryn Els",
+        "accommodation": "Ger camps, 7 nights",
+        "transport": "4x4 convoy",
+        "meals": "Three meals a day"
+      },
+      "khuvsgul": {
+        "name": "Lake Khovsgol",
+        "region": "Khovsgol province",
+        "dates": "20–26 July",
+        "alt": "Reindeer grazing in the Khovsgol taiga",
+        "accommodation": "Lakeside camp, 6 nights",
+        "transport": "Domestic flight and 4x4",
+        "meals": "Three meals a day"
+      }
+    },
+    "swipe": "Swipe to see more tours"
+  },
+  "marquee": [
+    "Naadam Festival",
+    "Snow leopard tour",
+    "Enduro & moto",
+    "The great Gobi",
+    "Lake Khovsgol",
+    "Taimen fishing"
+  ],
+  "services": {
+    "badge": "04 What we do",
+    "line1": "Everything",
+    "line2": "between the idea and the road",
+    "intro": "From a package holiday abroad to a private route across the Mongolian steppe — including the paperwork that gets you there.",
+    "items": {
+      "outbound": {
+        "title": "Outbound tours",
+        "body": "Package tours to Europe and the Scandinavian countries, and across South-East Asia."
+      },
+      "domestic": {
+        "title": "Domestic tours",
+        "body": "Journeys through Mongolia's landscapes, heritage, customs and history — plus Enduro motorcycle adventures across the steppe."
+      },
+      "custom": {
+        "title": "Custom tours",
+        "body": "Tailor-made programmes for families, groups of friends and company teams."
+      },
+      "advice": {
+        "title": "Travel advisory",
+        "body": "Visa document preparation and applications, itinerary planning, domestic and international flight tickets, and hotel bookings."
+      }
+    },
+    "advantages": {
+      "title": "Why travel with us",
+      "items": [
+        "Trips built around each traveller's own interests and needs.",
+        "An experienced, professional team looking after you.",
+        "Your safety and comfort secured throughout the journey.",
+        "Environmentally responsible, high-quality service, always."
+      ]
+    }
+  },
+  "how": {
+    "badge": "05 How it works",
+    "line1": "Three steps,",
+    "line2": "no spreadsheets",
+    "intro": "We handle the planning, the visas, the tickets and the beds. You are left with the journey itself.",
+    "steps": {
+      "brief": {
+        "title": "Tell us what you want",
+        "body": "Two minutes, four questions. Interest, destination, dates, budget — that is all we need to start."
+      },
+      "shape": {
+        "title": "We shape the programme",
+        "body": "A real planner builds the route, books the stays and tickets, and briefs the guides who live there. If you need a visa, we prepare the documents with you."
+      },
+      "go": {
+        "title": "Just turn up",
+        "body": "Transport, meals and accommodation all sit in one programme. You only have to bring your bag."
+      }
+    },
+    "stats": {
+      "aimags": "Provinces covered",
+      "programs": "Tour programmes",
+      "guides": "Local guide partners",
+      "languages": "Languages we serve in"
+    }
+  },
+  "testimonials": {
+    "line1": "People who",
+    "line2": "took the road",
+    "rating": "4.9 average rating from our travellers",
+    "items": {
+      "nomin": {
+        "quote": "We watched the wrestling and the horse race from as close as you can get. Our guide explained the customs of every group we met, and that turned a festival into a real story.",
+        "name": "Nomin B.",
+        "role": "The Naadam Festival"
+      },
+      "jiwoo": {
+        "quote": "Ten days in the Altai of Khovd. I never expected to see a snow leopard, but we found tracks and watched argali and ibex up close. The team's preparation was outstanding.",
+        "name": "Ji-woo Kim",
+        "role": "Snow leopard tour"
+      },
+      "lukas": {
+        "quote": "Caught a taimen on the Onon and released it. That week in the taiga was the quietest holiday I have ever had.",
+        "name": "Lukas M.",
+        "role": "Batshireet fishing"
+      }
+    }
+  },
+  "cta": {
+    "title": "Let's take the road",
+    "body": "Tell us the trip you have in mind and we will send a programme built for you within two working days. No deposit until you are happy with it.",
+    "alt": "The shore of Lake Khovsgol, ringed by forested mountains",
+    "placeholder": "you@email.com",
+    "submit": "Get a programme",
+    "formLabel": "Request a travel programme",
+    "emailLabel": "Email address"
+  },
+  "footer": {
+    "tagline": "Outbound and domestic tours, custom programmes and visa support — Travel With Me LLC.",
+    "contact": "Contact",
+    "columns": {
+      "explore": {
+        "title": "Tours",
+        "links": [
+          "The Naadam Festival",
+          "Snow leopard tour",
+          "Enduro & moto tour",
+          "Batshireet fishing"
+        ]
+      },
+      "company": {
+        "title": "Company",
+        "links": [
+          "About us",
+          "Our mission",
+          "Services",
+          "Partnerships"
+        ]
+      },
+      "support": {
+        "title": "Support",
+        "links": [
+          "Visa advice",
+          "Booking terms",
+          "Travel insurance",
+          "Contact"
+        ]
+      }
+    },
+    "copyright": "© 2026 Travel With Me LLC. All rights reserved.",
+    "privacy": "Privacy",
+    "terms": "Terms"
+  },
+  "tabs": {
+    "home": "Home",
+    "experiences": "Stories",
+    "trips": "Tours",
+    "services": "Services",
+    "contact": "Contact",
+    "label": "Primary"
+  },
+  "credits": {
+    "title": "Photography",
+    "note": "Every photograph on this page was taken in Mongolia and is used under a free licence from Wikimedia Commons."
+  }
+}

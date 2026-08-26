@@ -1,7 +1,6 @@
 import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
-  /* config options here */
-};
+// Photography is vendored into public/photos, so no remote image hosts are needed.
+const nextConfig: NextConfig = {};
 
 export default nextConfig;
