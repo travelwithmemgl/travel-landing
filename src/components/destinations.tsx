@@ -3,50 +3,23 @@
 import Image from "next/image";
 import { useMemo, useState } from "react";
 import {
-  dateKeys,
-  priceKeys,
   regionKeys,
   trips,
   tripTypeKeys,
-  type DateKey,
-  type PriceKey,
   type RegionKey,
   type Trip,
   type TripTypeKey,
 } from "@/lib/data";
 import { fill, type Dictionary } from "@/lib/dictionary";
-import {
-  BedIcon,
-  CalendarIcon,
-  CarIcon,
-  ChevronDownIcon,
-  ExpandIcon,
-  GroupIcon,
-  MealIcon,
-  TagIcon,
-} from "./icons";
+import { BedIcon, CarIcon, ChevronDownIcon, ExpandIcon, MealIcon } from "./icons";
 
 /** "" means "no filter" and renders the placeholder option. */
 type Filters = {
   destination: RegionKey | "";
   category: TripTypeKey | "";
-  price: PriceKey | "";
-  date: DateKey | "";
 };
 
-const emptyFilters: Filters = { destination: "", category: "", price: "", date: "" };
-
-function matchesPrice(trip: Trip, key: PriceKey | "") {
-  if (key === "lt1000") return trip.amount < 1000;
-  if (key === "mid") return trip.amount >= 1000 && trip.amount <= 1500;
-  if (key === "gt1500") return trip.amount > 1500;
-  return true;
-}
-
-function matchesDate(trip: Trip, key: DateKey | "") {
-  if (key === "" || key === "any") return true;
-  return trip.month === key;
-}
+const emptyFilters: Filters = { destination: "", category: "" };
 
 export function Destinations({ dict }: { dict: Dictionary }) {
   const [filters, setFilters] = useState<Filters>(emptyFilters);
@@ -58,9 +31,7 @@ export function Destinations({ dict }: { dict: Dictionary }) {
       trips.filter(
         (trip) =>
           (applied.destination === "" || trip.region === applied.destination) &&
-          (applied.category === "" || trip.type === applied.category) &&
-          matchesPrice(trip, applied.price) &&
-          matchesDate(trip, applied.date),
+          (applied.category === "" || trip.type === applied.category),
       ),
     [applied],
   );
@@ -77,7 +48,7 @@ export function Destinations({ dict }: { dict: Dictionary }) {
         <p className="max-w-xs text-sm leading-relaxed text-muted">{dict.trips.intro}</p>
       </div>
 
-      <div className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-line bg-line lg:grid-cols-[repeat(4,1fr)_auto]">
+      <div className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-line bg-line lg:grid-cols-[repeat(2,1fr)_auto]">
         <Field
           label={dict.trips.filters.destination}
           placeholder={dict.trips.placeholders.destination}
@@ -91,20 +62,6 @@ export function Destinations({ dict }: { dict: Dictionary }) {
           value={filters.category}
           options={tripTypeKeys.map((k) => ({ value: k, label: dict.trips.types[k] }))}
           onChange={(v) => setFilters((f) => ({ ...f, category: v as TripTypeKey | "" }))}
-        />
-        <Field
-          label={dict.trips.filters.price}
-          placeholder={dict.trips.placeholders.price}
-          value={filters.price}
-          options={priceKeys.map((k) => ({ value: k, label: dict.trips.prices[k] }))}
-          onChange={(v) => setFilters((f) => ({ ...f, price: v as PriceKey | "" }))}
-        />
-        <Field
-          label={dict.trips.filters.date}
-          placeholder={dict.trips.placeholders.date}
-          value={filters.date}
-          options={dateKeys.map((k) => ({ value: k, label: dict.trips.dates[k] }))}
-          onChange={(v) => setFilters((f) => ({ ...f, date: v as DateKey | "" }))}
         />
 
         <div className="col-span-2 flex items-center bg-white p-3 lg:col-span-1">
@@ -218,12 +175,6 @@ function TripCard({
         <span className="absolute right-3 top-3 rounded-full bg-black/35 px-3 py-1 text-[11px] text-white backdrop-blur-md">
           {typeLabel}
         </span>
-
-        <div className="absolute inset-x-3 bottom-3 flex flex-wrap items-center gap-1.5">
-          <Pill icon={<TagIcon className="h-3.5 w-3.5" />}>{trip.priceLabel}</Pill>
-          <Pill icon={<GroupIcon className="h-3.5 w-3.5" />}>{typeLabel}</Pill>
-          <Pill icon={<CalendarIcon className="h-3.5 w-3.5" />}>{item.dates}</Pill>
-        </div>
       </div>
 
       {open && (
@@ -254,15 +205,6 @@ function TripCard({
         </button>
       </footer>
     </article>
-  );
-}
-
-function Pill({ icon, children }: { icon: React.ReactNode; children: React.ReactNode }) {
-  return (
-    <span className="flex items-center gap-1.5 rounded-full bg-black/35 px-2.5 py-1 text-[11px] text-white backdrop-blur-md">
-      {icon}
-      {children}
-    </span>
   );
 }
 

@@ -97,16 +97,11 @@ export const galleryImages = [
 
 export type RegionKey = "tuv" | "umnugovi" | "khuvsgul" | "khovd" | "khentii";
 export type TripTypeKey = "open" | "private" | "adventure";
-export type MonthKey = "jun" | "jul" | "aug" | "sep";
 
 export type Trip = {
   id: string;
   region: RegionKey;
   type: TripTypeKey;
-  month: MonthKey;
-  /** Numeric amount used by the price filter; the label is formatted per locale. */
-  amount: number;
-  priceLabel: string;
   slots: number;
   image: string;
 };
@@ -116,9 +111,6 @@ export const trips: Trip[] = [
     id: "naadam",
     region: "tuv",
     type: "open",
-    month: "jul",
-    amount: 890,
-    priceLabel: "$890",
     slots: 8,
     image: "/photos/trip-naadam.jpg",
   },
@@ -126,9 +118,6 @@ export const trips: Trip[] = [
     id: "snow-leopard",
     region: "khovd",
     type: "adventure",
-    month: "sep",
-    amount: 1980,
-    priceLabel: "$1,980",
     slots: 4,
     image: "/photos/trip-leopard.jpg",
   },
@@ -136,9 +125,6 @@ export const trips: Trip[] = [
     id: "enduro",
     region: "tuv",
     type: "adventure",
-    month: "jun",
-    amount: 1450,
-    priceLabel: "$1,450",
     slots: 6,
     image: "/photos/trip-enduro.jpg",
   },
@@ -146,9 +132,6 @@ export const trips: Trip[] = [
     id: "fishing",
     region: "khentii",
     type: "private",
-    month: "sep",
-    amount: 1120,
-    priceLabel: "$1,120",
     slots: 5,
     image: "/photos/trip-fishing.jpg",
   },
@@ -156,9 +139,6 @@ export const trips: Trip[] = [
     id: "gobi",
     region: "umnugovi",
     type: "open",
-    month: "aug",
-    amount: 1250,
-    priceLabel: "$1,250",
     slots: 6,
     image: "/photos/trip-gobi.jpg",
   },
@@ -166,9 +146,6 @@ export const trips: Trip[] = [
     id: "khuvsgul",
     region: "khuvsgul",
     type: "open",
-    month: "jul",
-    amount: 780,
-    priceLabel: "$780",
     slots: 10,
     image: "/photos/trip-khuvsgul.jpg",
   },
@@ -176,10 +153,6 @@ export const trips: Trip[] = [
 
 export const regionKeys: RegionKey[] = ["tuv", "umnugovi", "khuvsgul", "khovd", "khentii"];
 export const tripTypeKeys: TripTypeKey[] = ["open", "private", "adventure"];
-export const priceKeys = ["lt1000", "mid", "gt1500"] as const;
-export type PriceKey = (typeof priceKeys)[number];
-export const dateKeys = ["jun", "jul", "aug", "sep", "any"] as const;
-export type DateKey = (typeof dateKeys)[number];
 
 export const stepKeys = ["brief", "shape", "go"] as const;
 export const statKeys = ["aimags", "programs", "guides", "languages"] as const;

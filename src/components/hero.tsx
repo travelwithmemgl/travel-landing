@@ -2,7 +2,7 @@ import Image from "next/image";
 import { heroImage } from "@/lib/data";
 import type { Dictionary } from "@/lib/dictionary";
 
-const fieldKeys = ["activity", "location", "date", "budget"] as const;
+const fieldKeys = ["activity", "location"] as const;
 
 export function Hero({ dict }: { dict: Dictionary }) {
   return (
@@ -34,7 +34,7 @@ export function Hero({ dict }: { dict: Dictionary }) {
       </div>
 
       <div className="absolute inset-x-0 bottom-0">
-        <div className="grid grid-cols-2 bg-black/25 backdrop-blur-md md:grid-cols-[repeat(4,1fr)_auto]">
+        <div className="grid grid-cols-2 bg-black/25 backdrop-blur-md md:grid-cols-[repeat(2,1fr)_auto]">
           {fieldKeys.map((key, i) => {
             const field = dict.hero.fields[key];
             return (

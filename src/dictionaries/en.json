@@ -31,14 +31,6 @@
       "location": {
         "label": "Destination",
         "value": "Khovd, Khentii, Gobi"
-      },
-      "date": {
-        "label": "Dates",
-        "value": "June – September"
-      },
-      "budget": {
-        "label": "Budget",
-        "value": "$0 – $2500"
       }
     }
   },
@@ -203,20 +195,16 @@
     "intro": "Six signature journeys across Mongolia — join an open group or ask us to build the same route privately.",
     "discover": "Search",
     "slotLeft": "{n} places left",
-    "empty": "No tour matches this filter — try widening the budget or the dates.",
+    "empty": "No tour matches this filter — try another destination or category.",
     "showDetails": "Show details for {name}",
     "hideDetails": "Hide details for {name}",
     "filters": {
       "destination": "Destination",
-      "category": "Category",
-      "price": "Price",
-      "date": "Dates"
+      "category": "Category"
     },
     "placeholders": {
       "destination": "Any province",
-      "category": "Any type",
-      "price": "Any budget",
-      "date": "Any month"
+      "category": "Any type"
     },
     "regions": {
       "tuv": "Tuv & Ulaanbaatar",
@@ -230,18 +218,6 @@
       "private": "Private",
       "adventure": "Adventure"
     },
-    "prices": {
-      "lt1000": "Under $1000",
-      "mid": "$1000 – $1500",
-      "gt1500": "Over $1500"
-    },
-    "dates": {
-      "jun": "June",
-      "jul": "July",
-      "aug": "August",
-      "sep": "September",
-      "any": "Any month"
-    },
     "detailLabels": {
       "accommodation": "Stay",
       "transport": "Transport",
@@ -251,7 +227,6 @@
       "naadam": {
         "name": "The Naadam Festival",
         "region": "Ulaanbaatar & Tuv",
-        "dates": "10–15 July",
         "alt": "Naadam horses racing across the open steppe",
         "accommodation": "Hotel and ger camp, 5 nights",
         "transport": "Shared coach",
@@ -260,7 +235,6 @@
       "snow-leopard": {
         "name": "Snow leopard tour",
         "region": "Khovd, Mongol Altai",
-        "dates": "8–17 September",
         "alt": "The snow-covered peaks of Altai Tavan Bogd",
         "accommodation": "Ger camp and tents, 9 nights",
         "transport": "4x4 and horseback",
@@ -269,7 +243,6 @@
       "enduro": {
         "name": "Enduro & moto tour",
         "region": "Tuv & Dundgovi",
-        "dates": "15–21 June",
         "alt": "Gobi dunes below a mountain range",
         "accommodation": "Tents and ger camps, 6 nights",
         "transport": "Motorcycle and support vehicle",
@@ -278,7 +251,6 @@
       "fishing": {
         "name": "Batshireet fishing",
         "region": "Khentii, Onon river",
-        "dates": "1–7 September",
         "alt": "A taimen from the Onon-Uur basin",
         "accommodation": "Riverside camp, 6 nights",
         "transport": "4x4",
@@ -287,7 +259,6 @@
       "gobi": {
         "name": "The great Gobi",
         "region": "Umnugovi",
-        "dates": "5–12 August",
         "alt": "The wide dune field of Khongoryn Els",
         "accommodation": "Ger camps, 7 nights",
         "transport": "4x4 convoy",
@@ -296,7 +267,6 @@
       "khuvsgul": {
         "name": "Lake Khovsgol",
         "region": "Khovsgol province",
-        "dates": "20–26 July",
         "alt": "Reindeer grazing in the Khovsgol taiga",
         "accommodation": "Lakeside camp, 6 nights",
         "transport": "Domestic flight and 4x4",
@@ -354,7 +324,7 @@
     "steps": {
       "brief": {
         "title": "Tell us what you want",
-        "body": "Two minutes, four questions. Interest, destination, dates, budget — that is all we need to start."
+        "body": "Two minutes, a couple of questions. What you are drawn to and where you want to go — that is all we need to start."
       },
       "shape": {
         "title": "We shape the programme",

@@ -74,34 +74,6 @@ export function StarIcon(props: IconProps) {
   );
 }
 
-export function TagIcon(props: IconProps) {
-  return (
-    <svg {...base} {...props}>
-      <circle cx="12" cy="12" r="9" />
-      <path d="M12 7v10M9.5 9.8A2.2 2.2 0 0 1 12 8.2c1.4 0 2.5.8 2.5 1.9M14.5 14.2c0 1.1-1.1 1.9-2.5 1.9a2.2 2.2 0 0 1-2.5-1.6" />
-    </svg>
-  );
-}
-
-export function GroupIcon(props: IconProps) {
-  return (
-    <svg {...base} {...props}>
-      <path d="M16 19v-1.5a3.5 3.5 0 0 0-3.5-3.5h-5A3.5 3.5 0 0 0 4 17.5V19" />
-      <circle cx="10" cy="8" r="3" />
-      <path d="M20 19v-1.5a3.5 3.5 0 0 0-2.6-3.4M15.5 5.2a3 3 0 0 1 0 5.6" />
-    </svg>
-  );
-}
-
-export function CalendarIcon(props: IconProps) {
-  return (
-    <svg {...base} {...props}>
-      <rect x="3.5" y="5" width="17" height="15.5" rx="2.5" />
-      <path d="M3.5 9.8h17M8.5 3.5v3M15.5 3.5v3" />
-    </svg>
-  );
-}
-
 export function BedIcon(props: IconProps) {
   return (
     <svg {...base} {...props}>
