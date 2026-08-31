@@ -2,6 +2,7 @@ import Image from "next/image";
 import { experienceImages, experienceKeys } from "@/lib/data";
 import type { Dictionary } from "@/lib/dictionary";
 import { ArrowUpRightIcon } from "./icons";
+import { SectionHeader } from "./section-header";
 
 /**
  * The long-form stories. Each block alternates sides on large screens; the
@@ -10,19 +11,18 @@ import { ArrowUpRightIcon } from "./icons";
 export function Experiences({ dict }: { dict: Dictionary }) {
   return (
     <section id="experiences" className="mx-auto max-w-[1440px] px-5 py-20 sm:px-8 sm:py-28">
-      <span className="inline-flex items-center gap-2 rounded-full border border-line px-3 py-1 text-[11px] text-muted">
-        <span className="h-1.5 w-1.5 rounded-full bg-ink" />
-        {dict.experiences.badge}
-      </span>
-
-      <div className="mt-6 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-        <h2 className="display text-5xl font-medium sm:text-6xl lg:text-7xl">
-          {dict.experiences.line1}
-          <br />
-          {dict.experiences.line2}
-        </h2>
-        <p className="max-w-sm text-sm leading-relaxed text-muted">{dict.experiences.intro}</p>
-      </div>
+      <SectionHeader
+        badge={dict.experiences.badge}
+        size="lg"
+        title={
+          <>
+            {dict.experiences.line1}
+            <br />
+            {dict.experiences.line2}
+          </>
+        }
+        intro={dict.experiences.intro}
+      />
 
       <div className="mt-16 flex flex-col gap-20 sm:gap-28">
         {experienceKeys.map((key, i) => {
@@ -33,6 +33,7 @@ export function Experiences({ dict }: { dict: Dictionary }) {
           return (
             <article
               key={key}
+              data-reveal
               className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16"
             >
               <div
@@ -94,7 +95,7 @@ export function Experiences({ dict }: { dict: Dictionary }) {
 
                 <a
                   href="#trips"
-                  className="mt-8 inline-flex min-h-12 items-center gap-1.5 rounded-full bg-ink px-6 text-[13px] font-medium text-white transition hover:bg-ink-soft active:scale-[0.98]"
+                  className="mt-8 inline-flex min-h-12 items-center gap-1.5 rounded-full bg-accent px-6 text-[13px] font-medium text-white transition hover:bg-accent-strong active:scale-[0.98]"
                 >
                   {dict.experiences.readMore}
                   <ArrowUpRightIcon className="h-4 w-4" />

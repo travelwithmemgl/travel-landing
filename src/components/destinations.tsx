@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useMemo, useState } from "react";
 import {
   regionKeys,
+  tripGalleries,
   trips,
   tripTypeKeys,
   type RegionKey,
@@ -12,19 +13,21 @@ import {
 } from "@/lib/data";
 import { fill, type Dictionary } from "@/lib/dictionary";
 import { BedIcon, CarIcon, ChevronDownIcon, ExpandIcon, MealIcon } from "./icons";
-
-/** "" means "no filter" and renders the placeholder option. */
-type Filters = {
-  destination: RegionKey | "";
-  category: TripTypeKey | "";
-};
-
-const emptyFilters: Filters = { destination: "", category: "" };
+import { PhotoDialog } from "./photo-dialog";
+import { SectionHeader } from "./section-header";
+import { useTripSearch, type TripFilters } from "./trip-search";
 
 export function Destinations({ dict }: { dict: Dictionary }) {
-  const [filters, setFilters] = useState<Filters>(emptyFilters);
-  const [applied, setApplied] = useState<Filters>(emptyFilters);
-  const [expanded, setExpanded] = useState<string | null>(trips[1].id);
+  const { applied, search } = useTripSearch();
+  const [filters, setFilters] = useState<TripFilters>(applied);
+  const [seen, setSeen] = useState(applied);
+  const [viewing, setViewing] = useState<Trip | null>(null);
+
+  // A search run from the hero has to show up in these fields too.
+  if (seen !== applied) {
+    setSeen(applied);
+    setFilters(applied);
+  }
 
   const visible = useMemo(
     () =>
@@ -38,17 +41,17 @@ export function Destinations({ dict }: { dict: Dictionary }) {
 
   return (
     <section id="trips" className="mx-auto max-w-[1440px] px-5 pb-24 sm:px-8 sm:pb-32">
-      <span className="inline-flex items-center gap-2 rounded-full border border-line px-3 py-1 text-[11px] text-muted">
-        <span className="h-1.5 w-1.5 rounded-full bg-ink" />
-        {dict.trips.badge}
-      </span>
+      <SectionHeader
+        badge={dict.trips.badge}
+        title={dict.trips.title}
+        intro={dict.trips.intro}
+        size="lg"
+      />
 
-      <div className="mt-6 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-        <h2 className="display text-5xl font-medium sm:text-6xl lg:text-7xl">{dict.trips.title}</h2>
-        <p className="max-w-xs text-sm leading-relaxed text-muted">{dict.trips.intro}</p>
-      </div>
-
-      <div className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-line bg-line lg:grid-cols-[repeat(2,1fr)_auto]">
+      <div
+        data-reveal
+        className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-line bg-line lg:grid-cols-[repeat(2,1fr)_auto]"
+      >
         <Field
           label={dict.trips.filters.destination}
           placeholder={dict.trips.placeholders.destination}
@@ -67,13 +70,18 @@ export function Destinations({ dict }: { dict: Dictionary }) {
         <div className="col-span-2 flex items-center bg-white p-3 lg:col-span-1">
           <button
             type="button"
-            onClick={() => setApplied(filters)}
-            className="min-h-12 w-full rounded-xl bg-ink px-8 text-[13px] font-medium text-white transition hover:bg-ink-soft active:scale-[0.99]"
+            onClick={() => search(filters)}
+            className="min-h-12 w-full rounded-xl bg-accent px-8 text-[13px] font-medium text-white transition hover:bg-accent-strong active:scale-[0.99]"
           >
             {dict.trips.discover}
           </button>
         </div>
       </div>
+
+      {/* Filtering is silent for screen readers unless the result count is announced. */}
+      <p aria-live="polite" className="sr-only">
+        {fill(dict.trips.results, { n: visible.length })}
+      </p>
 
       <div className="no-scrollbar edge-scroll -mx-5 mt-8 flex items-start gap-4 overflow-x-auto px-5 sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-5 sm:overflow-visible sm:px-0 lg:grid-cols-3">
         {visible.map((trip) => (
@@ -81,12 +89,7 @@ export function Destinations({ dict }: { dict: Dictionary }) {
             key={trip.id}
             className="w-[85vw] max-w-sm shrink-0 snap-start sm:w-auto sm:max-w-none sm:shrink"
           >
-            <TripCard
-              trip={trip}
-              dict={dict}
-              open={expanded === trip.id}
-              onToggle={() => setExpanded((id) => (id === trip.id ? null : trip.id))}
-            />
+            <TripCard trip={trip} dict={dict} onOpen={() => setViewing(trip)} />
           </div>
         ))}
       </div>
@@ -98,6 +101,8 @@ export function Destinations({ dict }: { dict: Dictionary }) {
       {visible.length === 0 && (
         <p className="mt-16 text-center text-sm text-muted">{dict.trips.empty}</p>
       )}
+
+      {viewing && <TripDialog trip={viewing} dict={dict} onClose={() => setViewing(null)} />}
     </section>
   );
 }
@@ -122,7 +127,7 @@ function Field({
         <select
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          className="w-full appearance-none bg-transparent pr-6 text-[12px] text-muted outline-none"
+          className="w-full cursor-pointer appearance-none bg-transparent pr-6 text-[12px] text-muted"
         >
           <option value="">{placeholder}</option>
           {options.map((option) => (
@@ -140,16 +145,15 @@ function Field({
 function TripCard({
   trip,
   dict,
-  open,
-  onToggle,
+  onOpen,
 }: {
   trip: Trip;
   dict: Dictionary;
-  open: boolean;
-  onToggle: () => void;
+  onOpen: () => void;
 }) {
   const item = dict.trips.items[trip.id as keyof typeof dict.trips.items];
   const typeLabel = dict.trips.types[trip.type];
+  const photos = tripGalleries[trip.id] ?? [trip.image];
 
   return (
     <article className="rounded-2xl border border-line bg-white p-3">
@@ -164,21 +168,69 @@ function TripCard({
         </span>
       </header>
 
-      <div className="relative h-56 overflow-hidden rounded-xl">
+      {/* The whole photo opens the tour's picture set. */}
+      <button
+        type="button"
+        onClick={onOpen}
+        aria-haspopup="dialog"
+        aria-label={fill(dict.trips.showDetails, { name: item.name })}
+        className="group relative block h-56 w-full overflow-hidden rounded-xl"
+      >
         <Image
           src={trip.image}
           alt={item.alt}
           fill
           sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"
-          className="object-cover"
+          className="object-cover transition duration-500 group-hover:scale-105"
         />
-        <span className="absolute right-3 top-3 rounded-full bg-black/35 px-3 py-1 text-[11px] text-white backdrop-blur-md">
+        <span className="absolute right-3 top-3 rounded-full bg-black/50 px-3 py-1 text-[11px] text-white backdrop-blur-md">
           {typeLabel}
         </span>
-      </div>
+      </button>
 
-      {open && (
-        <dl className="grid grid-cols-3 gap-3 px-1 pt-4">
+      <footer className="flex items-center justify-between gap-3 px-1 pb-1 pt-4">
+        <span className="text-[12px] text-muted">
+          {fill(dict.trips.photoCount, { n: photos.length })}
+        </span>
+        <button
+          type="button"
+          onClick={onOpen}
+          aria-haspopup="dialog"
+          aria-label={fill(dict.trips.showDetails, { name: item.name })}
+          className="flex h-10 w-10 items-center justify-center rounded-full border border-line text-muted transition hover:border-ink hover:text-ink active:bg-cream"
+        >
+          <ExpandIcon className="h-3.5 w-3.5" />
+        </button>
+      </footer>
+    </article>
+  );
+}
+
+/** The tour's photo set, with its practical details along the bottom. */
+function TripDialog({
+  trip,
+  dict,
+  onClose,
+}: {
+  trip: Trip;
+  dict: Dictionary;
+  onClose: () => void;
+}) {
+  const item = dict.trips.items[trip.id as keyof typeof dict.trips.items];
+  const sources = tripGalleries[trip.id] ?? [trip.image];
+  const photos = sources.map((src, i) => ({ src, alt: item.gallery[i] ?? item.alt }));
+
+  return (
+    <PhotoDialog
+      photos={photos}
+      title={item.name}
+      subtitle={`${item.region} · ${dict.trips.types[trip.type]} · ${fill(dict.trips.slotLeft, {
+        n: trip.slots,
+      })}`}
+      labels={{ close: dict.gallery.close, prev: dict.value.prev, next: dict.value.next }}
+      onClose={onClose}
+      details={
+        <dl className="mt-4 grid grid-cols-3 gap-3 border-t border-white/15 pt-4">
           <Detail icon={<BedIcon className="h-3.5 w-3.5" />} term={dict.trips.detailLabels.accommodation}>
             {item.accommodation}
           </Detail>
@@ -189,22 +241,8 @@ function TripCard({
             {item.meals}
           </Detail>
         </dl>
-      )}
-
-      <footer className="px-1 pb-1 pt-4">
-        <button
-          type="button"
-          onClick={onToggle}
-          aria-expanded={open}
-          aria-label={fill(open ? dict.trips.hideDetails : dict.trips.showDetails, {
-            name: item.name,
-          })}
-          className="flex h-10 w-10 items-center justify-center rounded-full border border-line text-muted transition hover:border-ink hover:text-ink active:bg-cream"
-        >
-          <ExpandIcon className="h-3.5 w-3.5" />
-        </button>
-      </footer>
-    </article>
+      }
+    />
   );
 }
 
@@ -219,11 +257,11 @@ function Detail({
 }) {
   return (
     <div>
-      <dt className="flex items-center gap-1.5 text-[11px] text-muted">
+      <dt className="flex items-center gap-1.5 text-[11px] text-white/60">
         {icon}
         {term}
       </dt>
-      <dd className="mt-1 text-[12px] leading-snug">{children}</dd>
+      <dd className="mt-1 text-[12px] leading-snug text-white">{children}</dd>
     </div>
   );
 }

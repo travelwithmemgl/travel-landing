@@ -5,6 +5,7 @@ import { useCallback, useRef, useState } from "react";
 import { slideImages, slideKeys } from "@/lib/data";
 import type { Dictionary } from "@/lib/dictionary";
 import { ArrowLeftIcon, ArrowRightIcon } from "./icons";
+import { SectionBadge } from "./section-header";
 
 /** Staggered heights/offsets give the rail its scrapbook rhythm. */
 const shape = [
@@ -38,11 +39,8 @@ export function ValueCarousel({ dict }: { dict: Dictionary }) {
   return (
     <section id="about" className="mx-auto max-w-[1440px] px-5 py-20 sm:px-8 sm:py-28">
       <div className="grid gap-12 lg:grid-cols-[minmax(0,22rem)_minmax(0,1fr)] lg:gap-16">
-        <div className="lg:pt-8">
-          <span className="inline-flex items-center gap-2 rounded-full border border-line px-3 py-1 text-[11px] text-muted">
-            <span className="h-1.5 w-1.5 rounded-full bg-ink" />
-            {dict.value.badge}
-          </span>
+        <div data-reveal className="lg:pt-8">
+          <SectionBadge>{dict.value.badge}</SectionBadge>
 
           <h2 className="display mt-6 text-4xl font-medium sm:text-5xl">
             {dict.value.line1}
@@ -58,7 +56,7 @@ export function ValueCarousel({ dict }: { dict: Dictionary }) {
 
           <a
             href="#trips"
-            className="mt-8 inline-flex items-center rounded-full bg-ink px-6 py-3 text-[13px] font-medium text-white transition hover:bg-ink-soft"
+            className="mt-8 inline-flex min-h-12 items-center rounded-full bg-accent px-6 text-[13px] font-medium text-white transition hover:bg-accent-strong"
           >
             {dict.value.cta}
           </a>

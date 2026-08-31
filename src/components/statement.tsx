@@ -38,7 +38,7 @@ export function Statement({ dict }: { dict: Dictionary }) {
         </div>
       </div>
 
-      <div className="relative mt-14 sm:mt-20">
+      <div data-reveal className="relative mt-14 sm:mt-20">
         <span
           aria-hidden
           className="pointer-events-none absolute left-1/2 top-1/2 h-40 w-40 -translate-y-1/3 translate-x-6 rounded-full bg-sand/70 blur-[2px] sm:h-56 sm:w-56"

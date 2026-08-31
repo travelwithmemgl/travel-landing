@@ -1,6 +1,7 @@
 import { serviceKeys } from "@/lib/data";
 import type { Dictionary } from "@/lib/dictionary";
 import { CheckIcon, CompassIcon, MountainIcon, PassportIcon, PlaneIcon } from "./icons";
+import { SectionHeader } from "./section-header";
 
 const serviceIcons = {
   outbound: PlaneIcon,
@@ -12,21 +13,19 @@ const serviceIcons = {
 export function Services({ dict }: { dict: Dictionary }) {
   return (
     <section id="services" className="mx-auto max-w-[1440px] px-5 py-20 sm:px-8 sm:py-28">
-      <span className="inline-flex items-center gap-2 rounded-full border border-line px-3 py-1 text-[11px] text-muted">
-        <span className="h-1.5 w-1.5 rounded-full bg-ink" />
-        {dict.services.badge}
-      </span>
+      <SectionHeader
+        badge={dict.services.badge}
+        title={
+          <>
+            {dict.services.line1}
+            <br />
+            {dict.services.line2}
+          </>
+        }
+        intro={dict.services.intro}
+      />
 
-      <div className="mt-6 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-        <h2 className="display max-w-2xl text-4xl font-medium sm:text-5xl lg:text-6xl">
-          {dict.services.line1}
-          <br />
-          {dict.services.line2}
-        </h2>
-        <p className="max-w-xs text-sm leading-relaxed text-muted">{dict.services.intro}</p>
-      </div>
-
-      <div className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+      <div data-reveal className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
         {serviceKeys.map((key) => {
           const Icon = serviceIcons[key];
           return (
@@ -41,14 +40,14 @@ export function Services({ dict }: { dict: Dictionary }) {
         })}
       </div>
 
-      <div className="mt-5 rounded-2xl bg-cream p-7 sm:p-10">
+      <div data-reveal className="mt-5 rounded-2xl bg-cream p-7 sm:p-10">
         <h3 className="display text-2xl font-medium sm:text-3xl">
           {dict.services.advantages.title}
         </h3>
         <ul className="mt-8 grid gap-x-10 gap-y-5 sm:grid-cols-2">
           {dict.services.advantages.items.map((advantage) => (
             <li key={advantage} className="flex items-start gap-3">
-              <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-ink text-white">
+              <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent text-white">
                 <CheckIcon className="h-3 w-3" />
               </span>
               <span className="text-sm leading-relaxed">{advantage}</span>

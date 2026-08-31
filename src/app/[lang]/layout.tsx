@@ -24,10 +24,9 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#0b0b0c" },
-  ],
+  // The page is light in every scheme, so the browser chrome has to match.
+  colorScheme: "light",
+  themeColor: "#ffffff",
 };
 
 export function generateStaticParams() {
@@ -60,12 +59,35 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
   const { lang } = await params;
   if (!isLocale(lang)) notFound();
 
+  const dict = await getDictionary(lang);
+
   return (
     <html
       lang={lang}
       className={`${inter.variable} ${notoKR.variable} h-full antialiased`}
+      // The reveal script below adds a class here before React hydrates, which
+      // would otherwise be reported as a server/client mismatch.
+      suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col font-sans">{children}</body>
+      <body className="min-h-full flex flex-col font-sans">
+        {/*
+          Arms the scroll-reveal styles before first paint. Without JavaScript
+          the class is never set and every section renders as normal.
+        */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{if(window.IntersectionObserver&&!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('reveal-ready')}catch(e){}",
+          }}
+        />
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[70] focus:rounded-full focus:bg-ink focus:px-5 focus:py-3 focus:text-[13px] focus:font-medium focus:text-white"
+        >
+          {dict.header.skip}
+        </a>
+        {children}
+      </body>
     </html>
   );
 }

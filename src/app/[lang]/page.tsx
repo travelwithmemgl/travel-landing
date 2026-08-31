@@ -7,11 +7,12 @@ import { Gallery } from "@/components/gallery";
 import { Hero } from "@/components/hero";
 import { HowItWorks } from "@/components/how-it-works";
 import { Marquee } from "@/components/marquee";
+import { ScrollReveal } from "@/components/reveal";
 import { Services } from "@/components/services";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { Statement } from "@/components/statement";
-import { Testimonials } from "@/components/testimonials";
+import { TripSearchProvider } from "@/components/trip-search";
 import { ValueCarousel } from "@/components/value-carousel";
 import { isLocale } from "@/lib/i18n";
 import { getDictionary } from "./dictionaries";
@@ -23,9 +24,11 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
   const dict = await getDictionary(lang);
 
   return (
-    <>
+    // The hero search bar and the tour grid share one set of filters.
+    <TripSearchProvider>
+      <ScrollReveal />
       <SiteHeader dict={dict} lang={lang} />
-      <main className="flex-1">
+      <main id="main" tabIndex={-1} className="flex-1 outline-none">
         <Hero dict={dict} />
         <Statement dict={dict} />
         <ValueCarousel dict={dict} />
@@ -35,11 +38,10 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
         <Marquee dict={dict} />
         <Services dict={dict} />
         <HowItWorks dict={dict} />
-        <Testimonials dict={dict} />
         <CallToAction dict={dict} />
       </main>
       <SiteFooter dict={dict} />
       <BottomNav dict={dict} />
-    </>
+    </TripSearchProvider>
   );
 }

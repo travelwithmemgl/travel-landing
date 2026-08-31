@@ -70,12 +70,12 @@ export function BottomNav({ dict }: { dict: Dictionary }) {
                 href={tab.href}
                 aria-current={on ? "true" : undefined}
                 className={`flex h-16 flex-col items-center justify-center gap-1 transition-colors ${
-                  on ? "text-ink" : "text-muted"
+                  on ? "text-accent" : "text-muted"
                 }`}
               >
                 <span
                   className={`flex h-7 w-12 items-center justify-center rounded-full transition-colors ${
-                    on ? "bg-cream" : "bg-transparent"
+                    on ? "bg-accent/10" : "bg-transparent"
                   }`}
                 >
                   <Icon className="h-[18px] w-[18px]" />

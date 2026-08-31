@@ -15,24 +15,15 @@
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
     "language": "Language",
-    "changeLanguage": "Change language"
+    "changeLanguage": "Change language",
+    "skip": "Skip to content"
   },
   "hero": {
     "eyebrow": "Travel With Me",
     "title": "Mongolia",
     "slogan": "Start a new chapter of adventure with Travel With Me.",
     "alt": "Layered green hills and forested ridges in Gorkhi-Terelj National Park",
-    "explore": "Explore",
-    "fields": {
-      "activity": {
-        "label": "Interest",
-        "value": "Naadam / Enduro / Fishing"
-      },
-      "location": {
-        "label": "Destination",
-        "value": "Khovd, Khentii, Gobi"
-      }
-    }
+    "explore": "Explore"
   },
   "proof": {
     "brand": "Travel With Me LLC",
@@ -187,7 +178,9 @@
       "Reindeer in the Khovsgol taiga",
       "An eagle hunter seated inside his ger",
       "Naadam horses racing across the open steppe"
-    ]
+    ],
+    "view": "View photo",
+    "close": "Close"
   },
   "trips": {
     "badge": "Featured departures",
@@ -196,8 +189,7 @@
     "discover": "Search",
     "slotLeft": "{n} places left",
     "empty": "No tour matches this filter — try another destination or category.",
-    "showDetails": "Show details for {name}",
-    "hideDetails": "Hide details for {name}",
+    "showDetails": "Photos and details for {name}",
     "filters": {
       "destination": "Destination",
       "category": "Category"
@@ -230,7 +222,14 @@
         "alt": "Naadam horses racing across the open steppe",
         "accommodation": "Hotel and ger camp, 5 nights",
         "transport": "Shared coach",
-        "meals": "Three meals a day"
+        "meals": "Three meals a day",
+        "gallery": [
+          "Naadam horses racing across the open steppe",
+          "Riders and spectators at the Naadam horse race",
+          "Wrestlers grappling on the Naadam field",
+          "Archers preparing to shoot at Naadam",
+          "A green valley and mountains in Gorkhi-Terelj"
+        ]
       },
       "snow-leopard": {
         "name": "Snow leopard tour",
@@ -238,7 +237,14 @@
         "alt": "The snow-covered peaks of Altai Tavan Bogd",
         "accommodation": "Ger camp and tents, 9 nights",
         "transport": "4x4 and horseback",
-        "meals": "Full board in the field"
+        "meals": "Full board in the field",
+        "gallery": [
+          "The snow-covered peaks of Altai Tavan Bogd",
+          "A wild snow leopard on a rocky Mongolian ridge",
+          "Kazakh eagle hunters on horseback before the Altai mountains",
+          "The Potanin glacier in the Altai Tavan Bogd massif",
+          "A Kazakh eagle hunter holding his golden eagle"
+        ]
       },
       "enduro": {
         "name": "Enduro & moto tour",
@@ -246,7 +252,13 @@
         "alt": "Gobi dunes below a mountain range",
         "accommodation": "Tents and ger camps, 6 nights",
         "transport": "Motorcycle and support vehicle",
-        "meals": "Three meals a day"
+        "meals": "Three meals a day",
+        "gallery": [
+          "Gobi dunes below a mountain range",
+          "An open road running toward the mountains of Bayan-Olgii",
+          "A herder on a motorcycle driving his flock across the steppe",
+          "A ger camp on the steppe in Dornogovi province"
+        ]
       },
       "fishing": {
         "name": "Batshireet fishing",
@@ -254,7 +266,13 @@
         "alt": "A taimen from the Onon-Uur basin",
         "accommodation": "Riverside camp, 6 nights",
         "transport": "4x4",
-        "meals": "Full board in the field"
+        "meals": "Full board in the field",
+        "gallery": [
+          "A taimen from the Onon-Uur basin",
+          "The green banks of the Onon river",
+          "A taimen caught on the Uur river before release",
+          "White gers lined up on the open steppe"
+        ]
       },
       "gobi": {
         "name": "The great Gobi",
@@ -262,7 +280,13 @@
         "alt": "The wide dune field of Khongoryn Els",
         "accommodation": "Ger camps, 7 nights",
         "transport": "4x4 convoy",
-        "meals": "Three meals a day"
+        "meals": "Three meals a day",
+        "gallery": [
+          "The wide dune field of Khongoryn Els",
+          "The dune ridge of Khongoryn Els in the Gobi",
+          "The dunes of Khongoryn Els with mountains behind",
+          "White gers lined up on the open steppe"
+        ]
       },
       "khuvsgul": {
         "name": "Lake Khovsgol",
@@ -270,10 +294,18 @@
         "alt": "Reindeer grazing in the Khovsgol taiga",
         "accommodation": "Lakeside camp, 6 nights",
         "transport": "Domestic flight and 4x4",
-        "meals": "Three meals a day"
+        "meals": "Three meals a day",
+        "gallery": [
+          "Reindeer grazing in the Khovsgol taiga",
+          "The forested shoreline of Lake Khovsgol",
+          "The shore of Lake Khovsgol, ringed by forested mountains",
+          "Reindeer in the Khovsgol taiga"
+        ]
       }
     },
-    "swipe": "Swipe to see more tours"
+    "swipe": "Swipe to see more tours",
+    "results": "{n} tours found",
+    "photoCount": "{n} photos"
   },
   "marquee": [
     "Naadam Festival",
@@ -342,36 +374,14 @@
       "languages": "Languages we serve in"
     }
   },
-  "testimonials": {
-    "line1": "People who",
-    "line2": "took the road",
-    "rating": "4.9 average rating from our travellers",
-    "items": {
-      "nomin": {
-        "quote": "We watched the wrestling and the horse race from as close as you can get. Our guide explained the customs of every group we met, and that turned a festival into a real story.",
-        "name": "Nomin B.",
-        "role": "The Naadam Festival"
-      },
-      "jiwoo": {
-        "quote": "Ten days in the Altai of Khovd. I never expected to see a snow leopard, but we found tracks and watched argali and ibex up close. The team's preparation was outstanding.",
-        "name": "Ji-woo Kim",
-        "role": "Snow leopard tour"
-      },
-      "lukas": {
-        "quote": "Caught a taimen on the Onon and released it. That week in the taiga was the quietest holiday I have ever had.",
-        "name": "Lukas M.",
-        "role": "Batshireet fishing"
-      }
-    }
-  },
   "cta": {
     "title": "Let's take the road",
     "body": "Tell us the trip you have in mind and we will send a programme built for you within two working days. No deposit until you are happy with it.",
     "alt": "The shore of Lake Khovsgol, ringed by forested mountains",
-    "placeholder": "you@email.com",
     "submit": "Get a programme",
-    "formLabel": "Request a travel programme",
-    "emailLabel": "Email address"
+    "mailSubject": "Travel programme request",
+    "call": "Call us",
+    "facebook": "Message on Facebook"
   },
   "footer": {
     "tagline": "Outbound and domestic tours, custom programmes and visa support — Travel With Me LLC.",
@@ -405,9 +415,7 @@
         ]
       }
     },
-    "copyright": "© 2026 Travel With Me LLC. All rights reserved.",
-    "privacy": "Privacy",
-    "terms": "Terms"
+    "copyright": "© 2026 Travel With Me LLC. All rights reserved."
   },
   "tabs": {
     "home": "Home",

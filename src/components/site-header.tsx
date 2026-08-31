@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { Dictionary } from "@/lib/dictionary";
 import type { Locale } from "@/lib/i18n";
 import { navKeys } from "@/lib/data";
@@ -15,6 +15,8 @@ import { LanguageSwitcher } from "./language-switcher";
 export function SiteHeader({ dict, lang }: { dict: Dictionary; lang: Locale }) {
   const [solid, setSolid] = useState(false);
   const [open, setOpen] = useState(false);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const sheetRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const onScroll = () => setSolid(window.scrollY > 80);
@@ -27,6 +29,53 @@ export function SiteHeader({ dict, lang }: { dict: Dictionary; lang: Locale }) {
     document.body.style.overflow = open ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
+    };
+  }, [open]);
+
+  // While the sheet is up it owns the keyboard: Escape closes it, Tab cycles
+  // inside it, and focus returns to the button that opened it.
+  useEffect(() => {
+    if (!open) return;
+    const sheet = sheetRef.current;
+    const trigger = triggerRef.current;
+    if (!sheet) return;
+
+    const focusable = () =>
+      Array.from(
+        sheet.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+        ),
+      );
+
+    focusable()[0]?.focus();
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+        return;
+      }
+      if (event.key !== "Tab") return;
+
+      const items = focusable();
+      if (items.length === 0) return;
+
+      const first = items[0];
+      const last = items[items.length - 1];
+      const active = document.activeElement;
+
+      if (event.shiftKey && (active === first || !sheet.contains(active))) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && active === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      trigger?.focus();
     };
   }, [open]);
 
@@ -58,7 +107,9 @@ export function SiteHeader({ dict, lang }: { dict: Dictionary; lang: Locale }) {
             <a
               key={item.key}
               href={item.href}
-              className="text-[13px] opacity-80 transition hover:opacity-100"
+              className={`rounded text-[13px] opacity-80 transition hover:opacity-100 ${
+                solid ? "" : "focus-light"
+              }`}
             >
               {dict.nav[item.key]}
             </a>
@@ -72,11 +123,14 @@ export function SiteHeader({ dict, lang }: { dict: Dictionary; lang: Locale }) {
         <div className="ml-auto flex items-center gap-2 lg:hidden">
           <LanguageSwitcher dict={dict} lang={lang} tone={solid ? "solid" : "ghost"} />
           <button
+            ref={triggerRef}
             type="button"
             onClick={() => setOpen(true)}
             aria-label={dict.header.openMenu}
             aria-expanded={open}
-            className="-mr-2 flex h-11 w-11 items-center justify-center"
+            className={`-mr-2 flex h-11 w-11 items-center justify-center rounded-full ${
+              solid ? "" : "focus-light"
+            }`}
           >
             <MenuIcon className="h-6 w-6" />
           </button>
@@ -85,14 +139,14 @@ export function SiteHeader({ dict, lang }: { dict: Dictionary; lang: Locale }) {
 
       {open && (
         <>
-          <button
-            type="button"
-            aria-label={dict.header.closeMenu}
+          <div
+            aria-hidden
             onClick={() => setOpen(false)}
             className="fixed inset-0 z-40 bg-ink/40 backdrop-blur-[2px] lg:hidden"
           />
 
           <div
+            ref={sheetRef}
             role="dialog"
             aria-modal="true"
             aria-label={dict.header.openMenu}

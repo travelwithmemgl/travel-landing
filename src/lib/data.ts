@@ -151,6 +151,16 @@ export const trips: Trip[] = [
   },
 ];
 
+/** Photo set shown in each tour's dialog; alt text lives in `trips.items[id].gallery`. */
+export const tripGalleries: Record<string, string[]> = {
+  "naadam": ["/photos/trip-naadam.jpg", "/photos/exp-naadam.jpg", "/photos/exp-naadam-inset.jpg", "/photos/gal-2.jpg", "/photos/slide-khangai.jpg"],
+  "snow-leopard": ["/photos/trip-leopard.jpg", "/photos/exp-leopard.jpg", "/photos/exp-leopard-inset.jpg", "/photos/slide-altai.jpg", "/photos/gal-3.jpg"],
+  "enduro": ["/photos/trip-enduro.jpg", "/photos/exp-enduro.jpg", "/photos/exp-enduro-inset.jpg", "/photos/slide-steppe.jpg"],
+  "fishing": ["/photos/trip-fishing.jpg", "/photos/exp-fishing.jpg", "/photos/exp-fishing-inset.jpg", "/photos/exp-mongolia-inset.jpg"],
+  "gobi": ["/photos/trip-gobi.jpg", "/photos/slide-gobi.jpg", "/photos/gal-5.jpg", "/photos/exp-mongolia-inset.jpg"],
+  "khuvsgul": ["/photos/trip-khuvsgul.jpg", "/photos/slide-khuvsgul.jpg", "/photos/cta.jpg", "/photos/gal-6.jpg"],
+};
+
 export const regionKeys: RegionKey[] = ["tuv", "umnugovi", "khuvsgul", "khovd", "khentii"];
 export const tripTypeKeys: TripTypeKey[] = ["open", "private", "adventure"];
 
@@ -161,13 +171,6 @@ export const statValues: Record<(typeof statKeys)[number], string> = {
   programs: "30+",
   guides: "18",
   languages: "3",
-};
-
-export const testimonialKeys = ["nomin", "jiwoo", "lukas"] as const;
-export const testimonialAvatars: Record<(typeof testimonialKeys)[number], string> = {
-  nomin: "/photos/avatar-1.jpg",
-  jiwoo: "/photos/avatar-2.jpg",
-  lukas: "/photos/avatar-3.jpg",
 };
 
 export const ctaImage = "/photos/cta.jpg";
@@ -181,6 +184,14 @@ export const contact = {
 } as const;
 
 export const footerColumnKeys = ["explore", "company", "support"] as const;
+export type FooterColumnKey = (typeof footerColumnKeys)[number];
+
+/** Section anchor for each footer link, in the same order as the dictionary lists. */
+export const footerColumnHrefs: Record<FooterColumnKey, string[]> = {
+  explore: ["#trips", "#trips", "#trips", "#trips"],
+  company: ["#about", "#about", "#services", "#contact"],
+  support: ["#services", "#trips", "#services", "#contact"],
+};
 
 export type PhotoCredit = { file: string; author: string; license: string; page: string };
 

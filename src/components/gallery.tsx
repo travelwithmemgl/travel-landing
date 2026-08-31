@@ -1,29 +1,33 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
 import { galleryImages } from "@/lib/data";
 import type { Dictionary } from "@/lib/dictionary";
+import { PhotoDialog } from "./photo-dialog";
+import { SectionHeader } from "./section-header";
 
 export function Gallery({ dict }: { dict: Dictionary }) {
+  const [open, setOpen] = useState<number | null>(null);
+
+  const photos = galleryImages.map((tile, i) => ({
+    src: tile.src,
+    alt: dict.gallery.alts[i],
+  }));
+
   return (
     <section className="border-y border-line bg-cream">
       <div className="mx-auto max-w-[1440px] px-5 py-20 sm:px-8 sm:py-28">
-        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-          <div>
-            <span className="inline-flex items-center gap-2 rounded-full border border-line bg-white px-3 py-1 text-[11px] text-muted">
-              <span className="h-1.5 w-1.5 rounded-full bg-ink" />
-              {dict.gallery.badge}
-            </span>
-            <h2 className="display mt-6 text-4xl font-medium sm:text-5xl lg:text-6xl">
-              {dict.gallery.title}
-            </h2>
-          </div>
-          <p className="max-w-xs text-sm leading-relaxed text-muted">{dict.gallery.caption}</p>
-        </div>
+        <SectionHeader badge={dict.gallery.badge} title={dict.gallery.title} intro={dict.gallery.caption} />
 
-        <div className="mt-12 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+        <div data-reveal className="mt-12 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
           {galleryImages.map((tile, i) => (
-            <figure
+            <button
               key={tile.src}
-              className={`relative overflow-hidden rounded-2xl ${
+              type="button"
+              onClick={() => setOpen(i)}
+              aria-label={`${dict.gallery.view} — ${dict.gallery.alts[i]}`}
+              className={`group relative overflow-hidden rounded-2xl ${
                 tile.wide ? "col-span-2 aspect-[8/3]" : "aspect-[4/3]"
               }`}
             >
@@ -32,12 +36,22 @@ export function Gallery({ dict }: { dict: Dictionary }) {
                 alt={dict.gallery.alts[i]}
                 fill
                 sizes="(min-width: 1024px) 25vw, 46vw"
-                className="object-cover transition duration-500 hover:scale-105"
+                className="object-cover transition duration-500 group-hover:scale-105"
               />
-            </figure>
+            </button>
           ))}
         </div>
       </div>
+
+      {open !== null && (
+        <PhotoDialog
+          photos={photos}
+          startIndex={open}
+          title={dict.gallery.title}
+          labels={{ close: dict.gallery.close, prev: dict.value.prev, next: dict.value.next }}
+          onClose={() => setOpen(null)}
+        />
+      )}
     </section>
   );
 }
