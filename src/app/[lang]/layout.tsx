@@ -1,6 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Noto_Sans_KR } from "next/font/google";
 import { notFound } from "next/navigation";
+import { BottomNav } from "@/components/bottom-nav";
+import { ScrollReveal } from "@/components/reveal";
+import { SiteFooter } from "@/components/site-footer";
+import { SiteHeader } from "@/components/site-header";
 import { isLocale, locales } from "@/lib/i18n";
 import { getDictionary } from "./dictionaries";
 import "../globals.css";
@@ -86,7 +90,13 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
         >
           {dict.header.skip}
         </a>
-        {children}
+        <ScrollReveal />
+        <SiteHeader dict={dict} lang={lang} />
+        <main id="main" tabIndex={-1} className="flex-1 outline-none">
+          {children}
+        </main>
+        <SiteFooter dict={dict} lang={lang} />
+        <BottomNav dict={dict} />
       </body>
     </html>
   );

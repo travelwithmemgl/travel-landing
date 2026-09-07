@@ -1,22 +1,11 @@
 import type { ReactNode } from "react";
 
-/** Badges read "02 Featured experiences" — the number carries the accent. */
+/** The small pill that labels a section — an accent dot and a word. */
 export function SectionBadge({ children }: { children: string }) {
-  const numbered = /^(\d+)\s+(.+)$/.exec(children);
-
   return (
     <span className="inline-flex items-center gap-2 rounded-full border border-line px-3 py-1 text-[11px] text-muted">
-      {numbered ? (
-        <>
-          <span className="font-medium text-accent">{numbered[1]}</span>
-          {numbered[2]}
-        </>
-      ) : (
-        <>
-          <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-          {children}
-        </>
-      )}
+      <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+      {children}
     </span>
   );
 }

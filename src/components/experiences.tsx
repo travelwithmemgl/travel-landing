@@ -10,7 +10,7 @@ import { SectionHeader } from "./section-header";
  */
 export function Experiences({ dict }: { dict: Dictionary }) {
   return (
-    <section id="experiences" className="mx-auto max-w-[1440px] px-5 py-20 sm:px-8 sm:py-28">
+    <section className="mx-auto max-w-[1440px] px-5 py-20 sm:px-8 sm:py-28">
       <SectionHeader
         badge={dict.experiences.badge}
         size="lg"

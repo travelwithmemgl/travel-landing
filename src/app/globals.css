@@ -23,6 +23,26 @@
     }
   }
 
+  @keyframes dialog-in {
+    from {
+      opacity: 0;
+      transform: translateY(10px) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
   @keyframes marquee {
     from {
       transform: translateX(0);
@@ -40,7 +60,14 @@
 
 /* Bottom inset for anything pinned above the home indicator. */
 @utility pb-safe {
+  /* Room for the mobile tab bar; the bar itself sits above the home indicator. */
   padding-bottom: env(safe-area-inset-bottom);
+}
+
+@media (max-width: 1023px) {
+  body {
+    padding-bottom: calc(4rem + env(safe-area-inset-bottom));
+  }
 }
 
 /* Edge-to-edge scrollers that still line up with the page gutter. */
@@ -78,13 +105,24 @@ body {
   /* Native-app feel on touch: no grey flash, no rubber-band chaining. */
   -webkit-tap-highlight-color: transparent;
   overscroll-behavior-y: none;
-  /* Room for the mobile tab bar; the bar itself sits above the home indicator. */
   padding-bottom: env(safe-area-inset-bottom);
 }
 
-@media (max-width: 1023px) {
-  body {
-    padding-bottom: calc(4rem + env(safe-area-inset-bottom));
+/*
+ * The contact panel is docked to the bottom of a phone screen and rises into
+ * it; on a wider screen it is centred, so it settles in place instead.
+ */
+.dialog-backdrop {
+  animation: fade-in 200ms ease-out;
+}
+
+.dialog-panel {
+  animation: sheet-up 260ms cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+@media (min-width: 640px) {
+  .dialog-panel {
+    animation: dialog-in 220ms cubic-bezier(0.16, 1, 0.3, 1);
   }
 }
 

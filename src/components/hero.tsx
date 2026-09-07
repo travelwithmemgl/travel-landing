@@ -18,7 +18,10 @@ export function Hero({ dict }: { dict: Dictionary }) {
   const [filters, setFilters] = useState<TripFilters>(emptyTripFilters);
 
   return (
-    <section id="top" className="relative isolate min-h-[36rem] w-full overflow-hidden sm:min-h-[660px] lg:h-[94svh]">
+    <section
+      id="top"
+      className="relative isolate min-h-[36rem] w-full overflow-hidden sm:min-h-[660px] lg:h-[94svh]"
+    >
       <Image
         src={heroImage}
         alt={dict.hero.alt}

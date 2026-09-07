@@ -12,7 +12,7 @@ const serviceIcons = {
 
 export function Services({ dict }: { dict: Dictionary }) {
   return (
-    <section id="services" className="mx-auto max-w-[1440px] px-5 py-20 sm:px-8 sm:py-28">
+    <section className="mx-auto max-w-[1440px] px-5 py-20 sm:px-8 sm:py-28">
       <SectionHeader
         badge={dict.services.badge}
         title={
@@ -25,7 +25,10 @@ export function Services({ dict }: { dict: Dictionary }) {
         intro={dict.services.intro}
       />
 
-      <div data-reveal className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+      <div
+        data-reveal
+        className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4"
+      >
         {serviceKeys.map((key) => {
           const Icon = serviceIcons[key];
           return (

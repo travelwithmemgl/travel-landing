@@ -8,7 +8,7 @@ export function CallToAction({ dict }: { dict: Dictionary }) {
   const mailto = `mailto:${contact.email}?subject=${encodeURIComponent(dict.cta.mailSubject)}`;
 
   return (
-    <section id="contact" className="mx-auto max-w-[1440px] px-5 py-20 sm:px-8 sm:py-28">
+    <section className="mx-auto max-w-[1440px] px-5 py-20 sm:px-8 sm:py-28">
       <div data-reveal className="relative isolate overflow-hidden rounded-3xl">
         <Image
           src={ctaImage}
@@ -19,8 +19,8 @@ export function CallToAction({ dict }: { dict: Dictionary }) {
         />
         <div className="absolute inset-0 bg-black/50" />
 
-        <div className="relative flex flex-col items-center px-6 py-24 text-center sm:py-32">
-          <h2 className="display text-balance text-5xl font-medium text-white sm:text-7xl lg:text-8xl">
+        <div className="relative flex flex-col items-center px-6 py-20 text-center sm:py-24">
+          <h2 className="display text-balance text-4xl font-medium text-white sm:text-5xl lg:text-6xl">
             {dict.cta.title}
           </h2>
           <p className="mt-5 max-w-md text-sm leading-relaxed text-white/90">{dict.cta.body}</p>

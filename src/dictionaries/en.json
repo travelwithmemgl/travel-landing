@@ -4,11 +4,9 @@
     "description": "Mongolia tours by Travel With Me LLC: the Naadam Festival, snow leopard tracking in the Altai, Enduro motorcycle rides across the steppe and taimen fishing on the Onon river."
   },
   "nav": {
+    "home": "Home",
     "about": "About us",
-    "experiences": "Experiences",
     "trips": "Tours",
-    "services": "Services",
-    "how": "How it works",
     "contact": "Contact"
   },
   "header": {
@@ -34,7 +32,7 @@
     "line2": "of adventure with us"
   },
   "value": {
-    "badge": "01 About us",
+    "badge": "About us",
     "line1": "Travel With Me",
     "line2": "since 2025",
     "body": "Our team founded Travel With Me LLC on 20 January 2025 to organise domestic and international journeys for individual travellers and organisations alike.",
@@ -76,7 +74,7 @@
     }
   },
   "experiences": {
-    "badge": "02 Featured experiences",
+    "badge": "Featured experiences",
     "line1": "Five ways",
     "line2": "to meet Mongolia",
     "intro": "Each of these journeys can be joined as an open group departure or built privately around your own dates.",
@@ -166,7 +164,7 @@
     }
   },
   "gallery": {
-    "badge": "03 In pictures",
+    "badge": "In pictures",
     "title": "The colours of Mongolia",
     "caption": "The landscapes, animals and traditions waiting for you on the road.",
     "alts": [
@@ -219,87 +217,85 @@
       "naadam": {
         "name": "The Naadam Festival",
         "region": "Ulaanbaatar & Tuv",
-        "alt": "Naadam horses racing across the open steppe",
+        "alt": "Young jockeys racing their horses across the open steppe at Naadam",
         "accommodation": "Hotel and ger camp, 5 nights",
         "transport": "Shared coach",
         "meals": "Three meals a day",
         "gallery": [
-          "Naadam horses racing across the open steppe",
-          "Riders and spectators at the Naadam horse race",
-          "Wrestlers grappling on the Naadam field",
-          "Archers preparing to shoot at Naadam",
-          "A green valley and mountains in Gorkhi-Terelj"
+          "Young jockeys racing their horses across the open steppe at Naadam",
+          "The mounted honour guard carrying the Nine White Banners at the Naadam opening ceremony",
+          "Wrestlers on the field of the national stadium during Naadam",
+          "Archers drawing traditional bows at a Naadam archery competition"
         ]
       },
       "snow-leopard": {
         "name": "Snow leopard tour",
         "region": "Khovd, Mongol Altai",
-        "alt": "The snow-covered peaks of Altai Tavan Bogd",
+        "alt": "The snow-covered Nairamdal peak in the Altai Tavan Bogd massif",
         "accommodation": "Ger camp and tents, 9 nights",
         "transport": "4x4 and horseback",
         "meals": "Full board in the field",
         "gallery": [
-          "The snow-covered peaks of Altai Tavan Bogd",
-          "A wild snow leopard on a rocky Mongolian ridge",
-          "Kazakh eagle hunters on horseback before the Altai mountains",
-          "The Potanin glacier in the Altai Tavan Bogd massif",
-          "A Kazakh eagle hunter holding his golden eagle"
+          "The snow-covered Nairamdal peak in the Altai Tavan Bogd massif",
+          "A snow leopard standing on snow-covered rocks",
+          "The Potanin glacier flowing down from the Altai peaks",
+          "Mountains mirrored in Shaazgai lake in Khovd province"
         ]
       },
       "enduro": {
         "name": "Enduro & moto tour",
         "region": "Tuv & Dundgovi",
-        "alt": "Gobi dunes below a mountain range",
+        "alt": "A rider on a dirt track running across the open steppe",
         "accommodation": "Tents and ger camps, 6 nights",
         "transport": "Motorcycle and support vehicle",
         "meals": "Three meals a day",
         "gallery": [
-          "Gobi dunes below a mountain range",
-          "An open road running toward the mountains of Bayan-Olgii",
-          "A herder on a motorcycle driving his flock across the steppe",
-          "A ger camp on the steppe in Dornogovi province"
+          "A rider on a dirt track running across the open steppe",
+          "A dirt road heading toward distant hills under heavy cloud",
+          "A support van fording a stream on a cross-country route",
+          "The restored temple of Ongi monastery in Dundgovi"
         ]
       },
       "fishing": {
         "name": "Batshireet fishing",
         "region": "Khentii, Onon river",
-        "alt": "A taimen from the Onon-Uur basin",
+        "alt": "A wide northern river at dawn with mist over the far bank",
         "accommodation": "Riverside camp, 6 nights",
         "transport": "4x4",
         "meals": "Full board in the field",
         "gallery": [
-          "A taimen from the Onon-Uur basin",
-          "The green banks of the Onon river",
-          "A taimen caught on the Uur river before release",
-          "White gers lined up on the open steppe"
+          "A wide northern river at dawn with mist over the far bank",
+          "A taimen, the giant salmon of Mongolia's northern rivers",
+          "A slow river winding between green banks below a low cliff",
+          "A ger camp on the steppe in Binder, Khentii province"
         ]
       },
       "gobi": {
         "name": "The great Gobi",
         "region": "Umnugovi",
-        "alt": "The wide dune field of Khongoryn Els",
+        "alt": "The dune field of Khongoryn Els below the Gobi mountains",
         "accommodation": "Ger camps, 7 nights",
         "transport": "4x4 convoy",
         "meals": "Three meals a day",
         "gallery": [
-          "The wide dune field of Khongoryn Els",
-          "The dune ridge of Khongoryn Els in the Gobi",
-          "The dunes of Khongoryn Els with mountains behind",
-          "White gers lined up on the open steppe"
+          "The dune field of Khongoryn Els below the Gobi mountains",
+          "A Bactrian camel on the gravel plain in front of the dunes",
+          "The red sandstone of the Flaming Cliffs at Bayanzag",
+          "Riders crossing the valley below the peaks of Yolyn Am"
         ]
       },
       "khuvsgul": {
         "name": "Lake Khovsgol",
         "region": "Khovsgol province",
-        "alt": "Reindeer grazing in the Khovsgol taiga",
+        "alt": "Horses grazing in the larch forest above Lake Khovsgol",
         "accommodation": "Lakeside camp, 6 nights",
         "transport": "Domestic flight and 4x4",
         "meals": "Three meals a day",
         "gallery": [
-          "Reindeer grazing in the Khovsgol taiga",
-          "The forested shoreline of Lake Khovsgol",
-          "The shore of Lake Khovsgol, ringed by forested mountains",
-          "Reindeer in the Khovsgol taiga"
+          "Horses grazing in the larch forest above Lake Khovsgol",
+          "Driftwood on the shore of Lake Khovsgol with mountains across the water",
+          "A lakeside ger camp between the water and the forest",
+          "Reindeer resting in the taiga forest"
         ]
       }
     },
@@ -315,8 +311,15 @@
     "Lake Khovsgol",
     "Taimen fishing"
   ],
+  "tabs": {
+    "home": "Home",
+    "about": "About",
+    "trips": "Tours",
+    "contact": "Contact",
+    "label": "Primary"
+  },
   "services": {
-    "badge": "04 What we do",
+    "badge": "What we do",
     "line1": "Everything",
     "line2": "between the idea and the road",
     "intro": "From a package holiday abroad to a private route across the Mongolian steppe — including the paperwork that gets you there.",
@@ -349,7 +352,7 @@
     }
   },
   "how": {
-    "badge": "05 How it works",
+    "badge": "How it works",
     "line1": "Three steps,",
     "line2": "no spreadsheets",
     "intro": "We handle the planning, the visas, the tickets and the beds. You are left with the journey itself.",
@@ -417,16 +420,15 @@
     },
     "copyright": "© 2026 Travel With Me LLC. All rights reserved."
   },
-  "tabs": {
-    "home": "Home",
-    "experiences": "Stories",
-    "trips": "Tours",
-    "services": "Services",
-    "contact": "Contact",
-    "label": "Primary"
-  },
   "credits": {
     "title": "Photography",
     "note": "Every photograph on this page was taken in Mongolia and is used under a free licence from Wikimedia Commons."
+  },
+  "channels": {
+    "title": "Reach us directly",
+    "phone": "Phone",
+    "email": "Email",
+    "facebook": "Facebook",
+    "note": "We answer in Mongolian, English and Korean."
   }
 }

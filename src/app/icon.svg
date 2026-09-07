@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <title>Travel With Me</title>
+  <!--
+    The logo reduced to the one thing that survives a 16px tab: the plane that
+    climbs off the end of its script. Brand accent behind it, so the tab reads
+    as a solid blue chip at any size.
+  -->
+  <rect width="64" height="64" rx="14" fill="#2f6bff"/>
+  <path d="M28.50 50.76 54.58 13.24 9.42 20.23 16.84 32.10 44.40 19.60 21.08 38.89z" fill="#fff"/>
+</svg>

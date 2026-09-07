@@ -1,5 +1,8 @@
-import { contact, footerColumnHrefs, footerColumnKeys, photoCredits } from "@/lib/data";
+import Link from "next/link";
+import { contact, footerColumnKeys, footerColumnSlugs, pagePath, photoCredits } from "@/lib/data";
 import type { Dictionary } from "@/lib/dictionary";
+import type { Locale } from "@/lib/i18n";
+import { ContactTrigger } from "./contact-trigger";
 import { FacebookIcon, GlobeIcon, MailIcon, PhoneIcon } from "./icons";
 
 type ContactLink = {
@@ -16,7 +19,7 @@ const contactLinks: ContactLink[] = [
   { key: "facebook", href: contact.facebook, label: "Facebook", Icon: FacebookIcon, external: true },
 ];
 
-export function SiteFooter({ dict }: { dict: Dictionary }) {
+export function SiteFooter({ dict, lang }: { dict: Dictionary; lang: Locale }) {
   return (
     <footer className="mt-auto bg-ink text-white">
       <div className="mx-auto max-w-[1440px] px-5 py-16 sm:px-8">
@@ -51,16 +54,23 @@ export function SiteFooter({ dict }: { dict: Dictionary }) {
               <div key={key}>
                 <h3 className="text-[12px] font-medium">{dict.footer.columns[key].title}</h3>
                 <ul className="mt-4 flex flex-col gap-2.5">
-                  {dict.footer.columns[key].links.map((link, i) => (
-                    <li key={link}>
-                      <a
-                        href={footerColumnHrefs[key][i] ?? "#top"}
-                        className="text-[13px] text-white/70 transition hover:text-white"
-                      >
-                        {link}
-                      </a>
-                    </li>
-                  ))}
+                  {dict.footer.columns[key].links.map((link, i) => {
+                    const slug = footerColumnSlugs[key][i];
+                    const style = "text-[13px] text-white/70 transition hover:text-white";
+                    return (
+                      <li key={link}>
+                        {slug === null ? (
+                          <ContactTrigger dict={dict} className={style}>
+                            {link}
+                          </ContactTrigger>
+                        ) : (
+                          <Link href={pagePath(lang, slug ?? "")} className={style}>
+                            {link}
+                          </Link>
+                        )}
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
             ))}
