@@ -91,6 +91,8 @@ export const galleryImages = [
   { src: "/photos/gal-5.jpg", wide: false },
   { src: "/photos/gal-6.jpg", wide: false },
   { src: "/photos/gal-7.jpg", wide: false },
+  { src: "/photos/gal-9.jpg", wide: false },
+  { src: "/photos/gal-10.jpg", wide: false },
   { src: "/photos/gal-8.jpg", wide: true },
 ];
 
@@ -125,7 +127,7 @@ export const trips: Trip[] = [
     region: "tuv",
     type: "adventure",
     slots: 6,
-    image: "/photos/trip-enduro-1.jpg",
+    image: "/photos/trip-enduro-5.jpg",
   },
   {
     id: "fishing",
@@ -150,7 +152,7 @@ export const trips: Trip[] = [
   },
 ];
 
-/** Four photographs per tour, shown in its dialog; alt text lives in `trips.items[id].gallery`. */
+/** The photographs shown in each tour's dialog; alt text lives in `trips.items[id].gallery`. */
 export const tripGalleries: Record<string, string[]> = {
   "naadam": [
     "/photos/trip-naadam-1.jpg",
@@ -165,10 +167,11 @@ export const tripGalleries: Record<string, string[]> = {
     "/photos/trip-leopard-4.jpg",
   ],
   "enduro": [
-    "/photos/trip-enduro-1.jpg",
+    "/photos/trip-enduro-5.jpg",
     "/photos/trip-enduro-2.jpg",
     "/photos/trip-enduro-3.jpg",
     "/photos/trip-enduro-4.jpg",
+    "/photos/trip-enduro-6.jpg",
   ],
   "fishing": [
     "/photos/trip-fishing-1.jpg",

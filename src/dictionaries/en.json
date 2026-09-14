@@ -175,6 +175,8 @@
       "The dunes of Khongoryn Els with mountains behind",
       "Reindeer in the Khovsgol taiga",
       "An eagle hunter seated inside his ger",
+      "A traveller holding up the Travel With Me banner at a ger camp",
+      "Two riders on horseback passing the gers at Terelj",
       "Naadam horses racing across the open steppe"
     ],
     "view": "View photo",
@@ -245,15 +247,16 @@
       "enduro": {
         "name": "Enduro & moto tour",
         "region": "Tuv & Dundgovi",
-        "alt": "A rider on a dirt track running across the open steppe",
+        "alt": "A rider carving through a berm on the motocross track, dirt flying",
         "accommodation": "Tents and ger camps, 6 nights",
         "transport": "Motorcycle and support vehicle",
         "meals": "Three meals a day",
         "gallery": [
-          "A rider on a dirt track running across the open steppe",
+          "A rider carving through a berm on the motocross track, dirt flying",
           "A dirt road heading toward distant hills under heavy cloud",
           "A support van fording a stream on a cross-country route",
-          "The restored temple of Ongi monastery in Dundgovi"
+          "The restored temple of Ongi monastery in Dundgovi",
+          "A rider working his enduro bike up the face of a Gobi sand dune"
         ]
       },
       "fishing": {
