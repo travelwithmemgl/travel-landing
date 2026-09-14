@@ -15,6 +15,7 @@ export function CallToAction({ dict }: { dict: Dictionary }) {
           alt={dict.cta.alt}
           fill
           sizes="(min-width: 1440px) 1376px, 100vw"
+          quality={90}
           className="object-cover"
         />
         <div className="absolute inset-0 bg-black/50" />

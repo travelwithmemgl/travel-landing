@@ -28,6 +28,7 @@ export function Hero({ dict }: { dict: Dictionary }) {
         fill
         priority
         sizes="100vw"
+        quality={90}
         className="object-cover"
       />
       {/* Heavy enough at both ends to keep the headline and slogan readable. */}

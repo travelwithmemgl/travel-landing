@@ -45,6 +45,7 @@ export function Experiences({ dict }: { dict: Dictionary }) {
                     alt={item.alt}
                     fill
                     sizes="(min-width: 1024px) 45vw, 92vw"
+                    quality={90}
                     className="object-cover"
                   />
                 </div>

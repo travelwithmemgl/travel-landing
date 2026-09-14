@@ -80,6 +80,7 @@ export function ValueCarousel({ dict }: { dict: Dictionary }) {
                     alt={slide.alt}
                     fill
                     sizes="(min-width: 640px) 15rem, 13rem"
+                    quality={90}
                     className="object-cover"
                   />
                   <figcaption className="absolute bottom-3 right-3 rounded-full bg-black/45 px-3 py-1 text-[11px] text-white backdrop-blur-sm">

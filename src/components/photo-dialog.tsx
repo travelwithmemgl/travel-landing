@@ -121,6 +121,7 @@ export function PhotoDialog({
               alt={photo.alt}
               fill
               sizes="100vw"
+              quality={90}
               className="object-contain"
               priority
             />

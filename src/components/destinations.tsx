@@ -181,6 +181,7 @@ function TripCard({
           alt={item.alt}
           fill
           sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"
+          quality={90}
           className="object-cover transition duration-500 group-hover:scale-105"
         />
         <span className="absolute right-3 top-3 rounded-full bg-black/50 px-3 py-1 text-[11px] text-white backdrop-blur-md">
