@@ -37,7 +37,7 @@ export const proofAvatars = [
 
 export const proofExtra = "+5";
 
-export const slideKeys = ["altai", "khangai", "khuvsgul", "gobi", "steppe"] as const;
+export const slideKeys = ["altai", "khangai", "khuvsgul", "gobi"] as const;
 export type SlideKey = (typeof slideKeys)[number];
 
 export const slideImages: Record<SlideKey, string> = {
@@ -45,7 +45,6 @@ export const slideImages: Record<SlideKey, string> = {
   khangai: "/photos/slide-khangai.jpg",
   khuvsgul: "/photos/slide-khuvsgul.jpg",
   gobi: "/photos/slide-gobi.jpg",
-  steppe: "/photos/slide-steppe.jpg",
 };
 
 export const experienceKeys = [
@@ -262,12 +261,6 @@ export const photoCredits: PhotoCredit[] = [
     author: "Bernard Gagnon",
     license: "CC0",
     page: "https://commons.wikimedia.org/wiki/File:Khongoryn_Els_14.jpg",
-  },
-  {
-    file: "Ger Camp - Dornogovi Province - Mongolia (6246458387).jpg",
-    author: "David Berkowitz from New York, NY, USA",
-    license: "CC BY 2.0",
-    page: "https://commons.wikimedia.org/wiki/File:Ger_Camp_-_Dornogovi_Province_-_Mongolia_(6246458387).jpg",
   },
   {
     file: "Naadam 2023 - Horse racing 08.jpg",
