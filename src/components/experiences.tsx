@@ -3,6 +3,7 @@ import { experienceImages, experienceKeys } from "@/lib/data";
 import type { Dictionary } from "@/lib/dictionary";
 import { ArrowUpRightIcon } from "./icons";
 import { SectionHeader } from "./section-header";
+import { blurOf } from "@/lib/blur";
 
 /**
  * The long-form stories. Each block alternates sides on large screens; the
@@ -42,6 +43,7 @@ export function Experiences({ dict }: { dict: Dictionary }) {
                 <div className="relative aspect-[4/3] overflow-hidden rounded-3xl">
                   <Image
                     src={images.main}
+                    placeholder={blurOf(images.main)}
                     alt={item.alt}
                     fill
                     sizes="(min-width: 1024px) 45vw, 92vw"
@@ -57,6 +59,7 @@ export function Experiences({ dict }: { dict: Dictionary }) {
                 >
                   <Image
                     src={images.inset}
+                    placeholder={blurOf(images.inset)}
                     alt={item.altInset}
                     fill
                     sizes="192px"

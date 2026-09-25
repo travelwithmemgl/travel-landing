@@ -81,18 +81,37 @@ export const experienceImages: Record<ExperienceKey, { main: string; inset: stri
 
 export const serviceKeys = ["outbound", "domestic", "custom", "advice"] as const;
 
-/** Mosaic tiles; `wide` cells span two columns. */
+/**
+ * Mosaic tiles. `wide` spans two columns, `tall` spans two rows.
+ *
+ * The five `gen-*` photographs lead, because they are the best frames the
+ * company has and a mosaic is read from the top left. Three of them replaced
+ * the weaker picture of the same subject rather than joining it — an eagle
+ * hunter, a Gobi cliff and a line of camels appearing twice in one grid reads
+ * as a thin library, not a rich one.
+ *
+ * `gen-night-ger` is the only portrait on the page and gets `tall` for it. A
+ * Milky Way arching over a lit ger is a vertical picture; cropped to 4:3 it
+ * keeps either the sky or the ger and loses whichever made it worth looking at.
+ *
+ * What is left of the older set is there on merit: the wrestlers and the horse
+ * race carry the two wide slots, and between them the lake, the taiga, the snow
+ * leopard and the river keep subject and colour alternating so that no two
+ * greens and no two crowds ever touch.
+ */
 export const galleryImages = [
-  { src: "/photos/gal-1.jpg", wide: true },
-  { src: "/photos/gal-2.jpg", wide: false },
-  { src: "/photos/gal-3.jpg", wide: false },
-  { src: "/photos/gal-4.jpg", wide: false },
-  { src: "/photos/gal-5.jpg", wide: false },
-  { src: "/photos/gal-6.jpg", wide: false },
-  { src: "/photos/gal-7.jpg", wide: false },
-  { src: "/photos/gal-9.jpg", wide: false },
-  { src: "/photos/gal-10.jpg", wide: false },
-  { src: "/photos/gal-8.jpg", wide: true },
+  { src: "/photos/gen-terelj.jpg", wide: true, tall: false },
+  { src: "/photos/gen-night-ger.jpg", wide: false, tall: true },
+  { src: "/photos/gen-eagle-hunter.jpg", wide: false, tall: false },
+  { src: "/photos/gen-gobi-cliffs.jpg", wide: false, tall: false },
+  { src: "/photos/gen-camel-caravan.jpg", wide: false, tall: false },
+  { src: "/photos/gal-1.jpg", wide: true, tall: false },
+  { src: "/photos/trip-khuvsgul-2.jpg", wide: false, tall: false },
+  { src: "/photos/gal-6.jpg", wide: false, tall: false },
+  { src: "/photos/trip-leopard-2.jpg", wide: false, tall: false },
+  { src: "/photos/trip-fishing-3.jpg", wide: false, tall: false },
+  { src: "/photos/gal-10.jpg", wide: false, tall: false },
+  { src: "/photos/gal-8.jpg", wide: true, tall: false },
 ];
 
 export type RegionKey = "tuv" | "umnugovi" | "khuvsgul" | "khovd" | "khentii";

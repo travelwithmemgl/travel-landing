@@ -1,0 +1,429 @@
+{
+  "$comment": [
+    "Every image on the site, and the prompt that makes it.",
+    "",
+    "The photographs this replaces came from Wikimedia Commons and are credited",
+    "in the footer (see photoCredits in src/lib/data.ts). A slot generated here",
+    "is no longer a photograph of a place, so its credit must go with it — the",
+    "footer block and the note at the top of data.ts both have to follow.",
+    "",
+    "aspect_ratio is what the API accepts; `slot` is how the page renders it, and",
+    "the two are matched on purpose. Where they cannot be (a 8:3 gallery tile has",
+    "no exact API ratio) the nearest wider ratio is asked for and the page crops,",
+    "which loses less than asking for a squarer one and cropping the sides.",
+    "",
+    "Run: node scripts/images/generate.mjs --dry-run",
+    "avatar-1/2/3.jpg are exported from data.ts and used by no component. They are left out on purpose: generating three faces costs money for a slot nothing renders, and an invented face beside a testimonial would be a second problem. Delete the export and the files instead.",
+    "The published OpenAPI spec is out of date against the live API: it advertises aspect ratios 21:9/5:4/4:5 and resolutions 2K/4K, and the service rejects all of them. Real values, read back from a 422: aspect_ratio is one of 9:16, 16:9, 4:3, 3:4, 1:1, 2:3, 3:2, and resolution is 720p or 1080p. The four 21:9 slots ask for 16:9 instead, which the page crops a little harder.",
+    "hero.jpg and cta.jpg are deliberately NOT generated. The API tops out at 1080p, so a generated hero would be 1620x1080 against the 1920x1280 photograph it replaced — a visible step down on the one image that fills the screen. They stay photographs, which also means the footer keeps attribution for them and only for them."
+  ],
+  "style": "Editorial travel photography of Mongolia. Natural available light, true-to-life colour, medium format look, fine grain, no HDR, no oversaturation. No text, no watermark, no logo, no signature, no border.",
+  "negativeNote": "The API takes no negative prompt; the style line above carries the exclusions.",
+  "images": [
+    {
+      "file": "slide-altai.jpg",
+      "aspect_ratio": "4:3",
+      "resolution": "1080p",
+      "slot": "about-us carousel — Altai",
+      "prompt": "The Mongolian Altai in late summer: sharp snow-streaked peaks above a broad glacial valley, a turquoise meltwater river braiding across gravel flats, hard clear high-altitude light."
+    },
+    {
+      "file": "slide-khangai.jpg",
+      "aspect_ratio": "4:3",
+      "resolution": "1080p",
+      "slot": "about-us carousel — Khangai",
+      "prompt": "The Khangai range in full summer: deep green rounded hills, larch woods on the north slopes, a clear river winding through a wide meadow, cloud shadows moving across the grass."
+    },
+    {
+      "file": "slide-khuvsgul.jpg",
+      "aspect_ratio": "4:3",
+      "resolution": "1080p",
+      "slot": "about-us carousel — Khuvsgul",
+      "prompt": "Lake Khuvsgul on a still morning: glass-clear water reflecting taiga forest and mountains, pale stones under the shallows, mist lifting off the far shore."
+    },
+    {
+      "file": "slide-gobi.jpg",
+      "aspect_ratio": "4:3",
+      "resolution": "1080p",
+      "slot": "about-us carousel — Gobi",
+      "prompt": "The Gobi at golden hour: long sand dunes with wind-carved ridgelines, coarse desert gravel in the foreground, warm low sun picking out every ripple, dry blue sky."
+    },
+    {
+      "file": "exp-mongolia.jpg",
+      "aspect_ratio": "4:3",
+      "resolution": "1080p",
+      "slot": "experience — Mongolia overland, main image",
+      "prompt": "A small white ger camp on open grassland at dusk, warm light in the doorways, horses tethered nearby, mountains going blue behind, a wide calm establishing view."
+    },
+    {
+      "file": "exp-mongolia-inset.jpg",
+      "aspect_ratio": "1:1",
+      "resolution": "1080p",
+      "slot": "experience — Mongolia, square inset",
+      "prompt": "Close square detail: the painted wooden door and orange lattice frame of a ger, felt wall and rope binding, late daylight, shallow depth of field."
+    },
+    {
+      "file": "exp-naadam.jpg",
+      "aspect_ratio": "4:3",
+      "resolution": "1080p",
+      "slot": "experience — Naadam festival, main image",
+      "prompt": "Naadam on the steppe: horse racing across open grass with a line of young riders in bright silk deel, dust rising, a crowd of spectators small along the horizon, high summer light."
+    },
+    {
+      "file": "exp-naadam-inset.jpg",
+      "aspect_ratio": "1:1",
+      "resolution": "1080p",
+      "slot": "experience — Naadam, square inset",
+      "prompt": "Close square detail: a traditional Mongolian bow and quiver of arrows resting on grass at an archery ground, embroidered leather, bright midday sun."
+    },
+    {
+      "file": "exp-enduro.jpg",
+      "aspect_ratio": "4:3",
+      "resolution": "1080p",
+      "slot": "experience — enduro riding, main image",
+      "prompt": "Two enduro motorcycles crossing a wide gravel river plain in the Mongolian backcountry, dust trailing behind, snow-topped mountains far ahead, riders small in an enormous landscape."
+    },
+    {
+      "file": "exp-enduro-inset.jpg",
+      "aspect_ratio": "1:1",
+      "resolution": "1080p",
+      "slot": "experience — enduro, square inset",
+      "prompt": "Close square detail: a dust-covered enduro motorcycle front wheel and fork on stony ground, worn knobbly tyre, hard afternoon light."
+    },
+    {
+      "file": "exp-leopard.jpg",
+      "aspect_ratio": "4:3",
+      "resolution": "1080p",
+      "slot": "experience — snow leopard country, main image",
+      "prompt": "High Altai snow leopard country in winter: steep scree and rock ridges dusted with snow, thin cold light, a vast empty wilderness, no animal visible, the habitat itself as the subject."
+    },
+    {
+      "file": "exp-leopard-inset.jpg",
+      "aspect_ratio": "1:1",
+      "resolution": "1080p",
+      "slot": "experience — snow leopard, square inset",
+      "prompt": "Close square detail: a spotting scope on a tripod against snow-covered rock, frost on the metal, cold blue winter light."
+    },
+    {
+      "file": "exp-fishing.jpg",
+      "aspect_ratio": "4:3",
+      "resolution": "1080p",
+      "slot": "experience — taimen fishing, main image",
+      "prompt": "A clear northern Mongolian river running through larch forest in autumn, a single fly fisher waist-deep casting across the current, gold and rust foliage, soft overcast light."
+    },
+    {
+      "file": "exp-fishing-inset.jpg",
+      "aspect_ratio": "1:1",
+      "resolution": "1080p",
+      "slot": "experience — fishing, square inset",
+      "prompt": "Close square detail: a fly reel and line on wet river stones beside clear running water, autumn colour reflected, soft diffused light."
+    },
+    {
+      "file": "gal-1.jpg",
+      "aspect_ratio": "16:9",
+      "resolution": "1080p",
+      "slot": "gallery, wide tile (rendered 8:3)",
+      "prompt": "A panoramic sweep of Mongolian grassland under a towering cloudscape, a herd of horses strung out across the middle distance, storm light breaking through."
+    },
+    {
+      "file": "gal-8.jpg",
+      "aspect_ratio": "16:9",
+      "resolution": "1080p",
+      "slot": "gallery, wide tile (rendered 8:3)",
+      "prompt": "A panoramic line of Gobi dunes at sunset, a small caravan of Bactrian camels crossing left to right, long shadows, warm dust in the air."
+    },
+    {
+      "file": "gal-2.jpg",
+      "aspect_ratio": "4:3",
+      "resolution": "1080p",
+      "slot": "gallery tile",
+      "prompt": "A Bactrian camel standing in low desert scrub, thick winter coat, calm expression, soft morning light."
+    },
+    {
+      "file": "gal-3.jpg",
+      "aspect_ratio": "4:3",
+      "resolution": "1080p",
+      "slot": "gallery tile",
+      "prompt": "A herd of yaks grazing on a high green pasture with mountains behind, cloud shadow crossing the slope."
+    },
+    {
+      "file": "gal-4.jpg",
+      "aspect_ratio": "4:3",
+      "resolution": "1080p",
+      "slot": "gallery tile",
+      "prompt": "A golden eagle on a hunter's gloved arm in the Altai, wings half open, cold clear winter light, mountains soft behind."
+    },
+    {
+      "file": "gal-5.jpg",
+      "aspect_ratio": "4:3",
+      "resolution": "1080p",
+      "slot": "gallery tile",
+      "prompt": "Wild horses running across shallow water on a steppe river crossing, spray catching the low sun."
+    },
+    {
+      "file": "gal-6.jpg",
+      "aspect_ratio": "4:3",
+      "resolution": "1080p",
+      "slot": "gallery tile",
+      "prompt": "A white ger interior: orange painted roof poles radiating from the crown, a stove, folded felt and bright textiles, warm daylight through the roof ring."
+    },
+    {
+      "file": "gal-7.jpg",
+      "aspect_ratio": "4:3",
+      "resolution": "1080p",
+      "slot": "gallery tile",
+      "prompt": "An ovoo — a cairn of stones hung with blue khadag silk — on a windy ridge, the steppe falling away behind, fast cloud."
+    },
+    {
+      "file": "gal-9.jpg",
+      "aspect_ratio": "4:3",
+      "resolution": "1080p",
+      "slot": "gallery tile",
+      "prompt": "Flaming Cliffs of Bayanzag: orange sandstone escarpment glowing at sunset against a deep blue evening sky."
+    },
+    {
+      "file": "gal-10.jpg",
+      "aspect_ratio": "3:4",
+      "resolution": "1080p",
+      "slot": "gallery tile (the one portrait tile)",
+      "prompt": "A tall vertical view of a mountain river gorge in the Khangai, larch trees on the walls, water falling through boulders, soft overcast light."
+    },
+    {
+      "file": "trip-naadam-1.jpg",
+      "aspect_ratio": "3:2",
+      "resolution": "1080p",
+      "slot": "trip card — Naadam",
+      "prompt": "Wrestlers in traditional zodog and shuudag facing each other on grass at a Naadam ground, spectators and bunting behind, bright summer afternoon."
+    },
+    {
+      "file": "trip-leopard-1.jpg",
+      "aspect_ratio": "3:2",
+      "resolution": "1080p",
+      "slot": "trip card — snow leopard",
+      "prompt": "A high Altai ridge in winter light, wind-scoured snow on dark rock, an immense cold wilderness seen from a ridgeline viewpoint."
+    },
+    {
+      "file": "trip-enduro-5.jpg",
+      "aspect_ratio": "3:2",
+      "resolution": "1080p",
+      "slot": "trip card — enduro",
+      "prompt": "An enduro rider cresting a grassy ridge on a dirt track, bike leaned into the turn, open valley and mountains beyond, afternoon sun."
+    },
+    {
+      "file": "trip-fishing-1.jpg",
+      "aspect_ratio": "3:2",
+      "resolution": "1080p",
+      "slot": "trip card — taimen fishing",
+      "prompt": "A wide clear river bend in northern Mongolia at dawn, mist on the water, forested banks, a small boat drawn up on gravel."
+    },
+    {
+      "file": "trip-gobi-1.jpg",
+      "aspect_ratio": "3:2",
+      "resolution": "1080p",
+      "slot": "trip card — Gobi",
+      "prompt": "A 4x4 track crossing red Gobi gravel toward distant rock formations, heat shimmer, huge empty sky."
+    },
+    {
+      "file": "trip-khuvsgul-1.jpg",
+      "aspect_ratio": "3:2",
+      "resolution": "1080p",
+      "slot": "trip card — Khuvsgul",
+      "prompt": "The shoreline of Lake Khuvsgul with larch forest coming down to clear water, mountains across the lake, calm summer morning."
+    },
+    {
+      "file": "texture-felt.jpg",
+      "aspect_ratio": "1:1",
+      "resolution": "1080p",
+      "slot": "decorative — section background texture",
+      "prompt": "Flat overhead view of undyed cream wool felt, close enough to read the fibre, even soft light, no objects, no pattern, pure material texture."
+    },
+    {
+      "file": "texture-pattern.jpg",
+      "aspect_ratio": "1:1",
+      "resolution": "1080p",
+      "slot": "decorative — repeating motif band",
+      "prompt": "A traditional Mongolian ulzii endless-knot motif embroidered in deep blue thread on cream felt, flat overhead view, evenly lit, the motif centred and complete."
+    },
+    {
+      "file": "texture-sky.jpg",
+      "aspect_ratio": "16:9",
+      "resolution": "1080p",
+      "slot": "decorative — wide gradient band between sections",
+      "prompt": "A clean gradient of open sky at high altitude, deep blue above fading to pale warm haze at the horizon, a few thin cirrus streaks, nothing else in frame."
+    },
+    {
+      "file": "texture-steppe-line.jpg",
+      "aspect_ratio": "16:9",
+      "resolution": "1080p",
+      "slot": "decorative — thin horizon divider",
+      "prompt": "An extremely simple horizon: a flat line of distant steppe hills silhouetted against an even pale sky, minimal, almost graphic, nothing in the foreground."
+    },
+    {
+      "file": "trip-naadam-2.jpg",
+      "aspect_ratio": "3:2",
+      "resolution": "1080p",
+      "slot": "trip detail gallery — naadam",
+      "prompt": "Archers in traditional deel drawing bows at a Naadam archery line, targets of small leather cylinders on the grass ahead, bright summer light."
+    },
+    {
+      "file": "trip-naadam-3.jpg",
+      "aspect_ratio": "3:2",
+      "resolution": "1080p",
+      "slot": "trip detail gallery — naadam",
+      "prompt": "Young jockeys on the long steppe race course at Naadam, horses at full gallop in a loose line, dust and open grassland behind."
+    },
+    {
+      "file": "trip-naadam-4.jpg",
+      "aspect_ratio": "3:2",
+      "resolution": "1080p",
+      "slot": "trip detail gallery — naadam",
+      "prompt": "A Naadam crowd on the grass around the wrestling ground, bright deel colours, flags and white gers along the edge of the field."
+    },
+    {
+      "file": "trip-leopard-2.jpg",
+      "aspect_ratio": "3:2",
+      "resolution": "1080p",
+      "slot": "trip detail gallery — leopard",
+      "prompt": "A ridge trail through high Altai scree in winter, boot prints in thin snow, immense grey rock faces rising on both sides."
+    },
+    {
+      "file": "trip-leopard-3.jpg",
+      "aspect_ratio": "3:2",
+      "resolution": "1080p",
+      "slot": "trip detail gallery — leopard",
+      "prompt": "A remote winter camp of two canvas tents on a sheltered high valley floor, smoke rising, mountains catching last light."
+    },
+    {
+      "file": "trip-leopard-4.jpg",
+      "aspect_ratio": "3:2",
+      "resolution": "1080p",
+      "slot": "trip detail gallery — leopard",
+      "prompt": "Argali sheep on a snowy Altai slope seen at distance, small against the rock, cold blue afternoon light."
+    },
+    {
+      "file": "trip-enduro-2.jpg",
+      "aspect_ratio": "3:2",
+      "resolution": "1080p",
+      "slot": "trip detail gallery — enduro",
+      "prompt": "A line of enduro bikes parked on a mountain pass marked by an ovoo, riders' gear on the ground, valleys falling away behind."
+    },
+    {
+      "file": "trip-enduro-3.jpg",
+      "aspect_ratio": "3:2",
+      "resolution": "1080p",
+      "slot": "trip detail gallery — enduro",
+      "prompt": "An enduro motorcycle fording a shallow rocky river, water spraying from the front wheel, forested banks."
+    },
+    {
+      "file": "trip-enduro-4.jpg",
+      "aspect_ratio": "3:2",
+      "resolution": "1080p",
+      "slot": "trip detail gallery — enduro",
+      "prompt": "A dirt track winding up a green ridge in tight switchbacks, a single rider halfway up, cloud shadow on the slope."
+    },
+    {
+      "file": "trip-enduro-6.jpg",
+      "aspect_ratio": "3:2",
+      "resolution": "1080p",
+      "slot": "trip detail gallery — enduro",
+      "prompt": "Evening camp on the steppe beside parked enduro bikes, a small fire, the sky going violet over distant hills."
+    },
+    {
+      "file": "trip-fishing-2.jpg",
+      "aspect_ratio": "3:2",
+      "resolution": "1080p",
+      "slot": "trip detail gallery — fishing",
+      "prompt": "A fly fisher casting from a gravel bar on a wide Mongolian river at first light, mist on the water, forest behind."
+    },
+    {
+      "file": "trip-fishing-3.jpg",
+      "aspect_ratio": "3:2",
+      "resolution": "1080p",
+      "slot": "trip detail gallery — fishing",
+      "prompt": "A taimen held just at the surface beside the boat before release, dark spotted flank and red tail, clear river water."
+    },
+    {
+      "file": "trip-fishing-4.jpg",
+      "aspect_ratio": "3:2",
+      "resolution": "1080p",
+      "slot": "trip detail gallery — fishing",
+      "prompt": "A drift boat moored on a river bank in autumn larch forest, rods laid across the seats, gold foliage reflected."
+    },
+    {
+      "file": "trip-gobi-2.jpg",
+      "aspect_ratio": "3:2",
+      "resolution": "1080p",
+      "slot": "trip detail gallery — gobi",
+      "prompt": "The Khongoryn Els singing dunes rising steeply from gravel plain, a ridge line cutting across the sky, late sun."
+    },
+    {
+      "file": "trip-gobi-3.jpg",
+      "aspect_ratio": "3:2",
+      "resolution": "1080p",
+      "slot": "trip detail gallery — gobi",
+      "prompt": "A Bactrian camel train resting beside a small desert well, herder's saddle and rope on the sand, harsh midday light."
+    },
+    {
+      "file": "trip-gobi-4.jpg",
+      "aspect_ratio": "3:2",
+      "resolution": "1080p",
+      "slot": "trip detail gallery — gobi",
+      "prompt": "Yolyn Am gorge: a narrow ice-floored canyon between high rock walls, cool shadow, a thin stream running through."
+    },
+    {
+      "file": "trip-khuvsgul-2.jpg",
+      "aspect_ratio": "3:2",
+      "resolution": "1080p",
+      "slot": "trip detail gallery — khuvsgul",
+      "prompt": "Horses grazing on the shore meadow of Lake Khuvsgul, the lake and far mountains behind, summer afternoon."
+    },
+    {
+      "file": "trip-khuvsgul-3.jpg",
+      "aspect_ratio": "3:2",
+      "resolution": "1080p",
+      "slot": "trip detail gallery — khuvsgul",
+      "prompt": "A reindeer herder's teepee camp in the northern taiga, reindeer resting nearby, soft forest light."
+    },
+    {
+      "file": "trip-khuvsgul-4.jpg",
+      "aspect_ratio": "3:2",
+      "resolution": "1080p",
+      "slot": "trip detail gallery — khuvsgul",
+      "prompt": "A wooden pier reaching into the clear shallows of Lake Khuvsgul at sunset, mountains silhouetted across the water."
+    }
+  ],
+  "keptPhotographs": {
+    "$comment": [
+      "The two slots this script does NOT generate, and the Commons files they are.",
+      "",
+      "Nothing in the repository linked a local file to its credit — photoCredits is",
+      "keyed by Commons filename and the local names say nothing. The link was",
+      "recovered: hero.jpg carries the EXIF artist 'Hons', which matches exactly one",
+      "of the 45 credited files, and both images were then compared against the",
+      "Commons originals and are identical. cta.jpg has no metadata at all and was",
+      "found by aspect ratio — 1.6319 against 1.6316, where the next candidate was",
+      "seventy times further away — then confirmed the same way, frame for frame.",
+      "",
+      "When the other 53 slots are replaced, photoCredits becomes exactly these two.",
+      "Until then it must stay whole: the photographs are still on the page, and",
+      "CC BY-SA requires the attribution that is there.",
+      "The two were swapped on 2026-09-25: the Khovsgol lakeshore is the hero now and the Terelj hills close the page. The attribution above swapped with them, which is the point of recording it against the local filename rather than the slot.",
+      "Settled 2026-09-25: the Khovsgol lakeshore is the hero, the Terelj hills close the page. The attribution follows the file, not the slot, which is why it can be swapped without anyone having to remember which credit belonged to which."
+    ],
+    "hero.jpg": {
+      "commonsFile": "Lake Khövsgöl, Mongolia.jpg",
+      "author": "Bernard Gagnon",
+      "license": "CC0",
+      "attributionRequired": false,
+      "note": "CC0 asks for nothing, but the credit stays — it costs a line and it is the courtesy the licence gave up the right to demand.",
+      "page": "https://commons.wikimedia.org/wiki/File:Lake_Kh%C3%B6vsg%C3%B6l%2C_Mongolia.jpg"
+    },
+    "cta.jpg": {
+      "commonsFile": "Krajobraz w Parku Narodowym Gorchi-Tereldż 17.JPG",
+      "author": "Marcin Konsek",
+      "license": "CC BY-SA 4.0",
+      "attributionRequired": true,
+      "page": "https://commons.wikimedia.org/wiki/File:Krajobraz_w_Parku_Narodowym_Gorchi-Tereld%C5%BC_17.JPG"
+    }
+  }
+}

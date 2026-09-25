@@ -6,6 +6,7 @@ import { slideImages, slideKeys } from "@/lib/data";
 import type { Dictionary } from "@/lib/dictionary";
 import { ArrowLeftIcon, ArrowRightIcon } from "./icons";
 import { SectionBadge } from "./section-header";
+import { blurOf } from "@/lib/blur";
 
 /** Staggered heights/offsets give the rail its scrapbook rhythm. */
 const shape = [
@@ -77,6 +78,7 @@ export function ValueCarousel({ dict }: { dict: Dictionary }) {
                 >
                   <Image
                     src={slideImages[key]}
+                    placeholder={blurOf(slideImages[key])}
                     alt={slide.alt}
                     fill
                     sizes="(min-width: 640px) 15rem, 13rem"

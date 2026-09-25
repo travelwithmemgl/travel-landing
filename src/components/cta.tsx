@@ -2,6 +2,7 @@ import Image from "next/image";
 import { contact, ctaImage } from "@/lib/data";
 import type { Dictionary } from "@/lib/dictionary";
 import { ArrowUpRightIcon, FacebookIcon, MailIcon, PhoneIcon } from "./icons";
+import { blurOf } from "@/lib/blur";
 
 export function CallToAction({ dict }: { dict: Dictionary }) {
   // No inbox behind a newsletter form, so the CTA hands over to real channels.
@@ -12,6 +13,7 @@ export function CallToAction({ dict }: { dict: Dictionary }) {
       <div data-reveal className="relative isolate overflow-hidden rounded-3xl">
         <Image
           src={ctaImage}
+          placeholder={blurOf(ctaImage)}
           alt={dict.cta.alt}
           fill
           sizes="(min-width: 1440px) 1376px, 100vw"

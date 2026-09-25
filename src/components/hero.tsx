@@ -12,6 +12,7 @@ import {
 import type { Dictionary } from "@/lib/dictionary";
 import { ChevronDownIcon } from "./icons";
 import { emptyTripFilters, useTripSearch, type TripFilters } from "./trip-search";
+import { blurOf } from "@/lib/blur";
 
 export function Hero({ dict }: { dict: Dictionary }) {
   const { search } = useTripSearch();
@@ -24,6 +25,7 @@ export function Hero({ dict }: { dict: Dictionary }) {
     >
       <Image
         src={heroImage}
+        placeholder={blurOf(heroImage)}
         alt={dict.hero.alt}
         fill
         priority

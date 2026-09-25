@@ -43,6 +43,15 @@ export async function generateMetadata(props: LayoutProps<"/[lang]">): Promise<M
 
   const dict = await getDictionary(lang);
   return {
+    /*
+     * What `opengraph-image.jpg`, the canonical and the hreflang links resolve
+     * against. Without it they come out pointing at localhost, and a link
+     * shared on Facebook — the only channel the footer names — carries a
+     * preview nobody else can load. The domain is not in this repo yet, so the
+     * deployment sets NEXT_PUBLIC_SITE_URL rather than a guess being hard-coded
+     * here.
+     */
+    metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
     title: dict.meta.title,
     description: dict.meta.description,
     appleWebApp: { capable: true, title: "Travel With Me", statusBarStyle: "black-translucent" },

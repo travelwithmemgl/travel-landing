@@ -16,6 +16,7 @@ import { BedIcon, CarIcon, ChevronDownIcon, ExpandIcon, MealIcon } from "./icons
 import { PhotoDialog } from "./photo-dialog";
 import { SectionHeader } from "./section-header";
 import { useTripSearch, type TripFilters } from "./trip-search";
+import { blurOf } from "@/lib/blur";
 
 export function Destinations({ dict }: { dict: Dictionary }) {
   const { applied, search } = useTripSearch();
@@ -178,6 +179,7 @@ function TripCard({
       >
         <Image
           src={trip.image}
+          placeholder={blurOf(trip.image)}
           alt={item.alt}
           fill
           sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"

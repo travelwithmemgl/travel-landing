@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ArrowLeftIcon, ArrowRightIcon, CloseIcon } from "./icons";
+import { blurOf } from "@/lib/blur";
 
 export type Photo = { src: string; alt: string };
 
@@ -118,6 +119,7 @@ export function PhotoDialog({
             <Image
               key={photo.src}
               src={photo.src}
+              placeholder={blurOf(photo.src)}
               alt={photo.alt}
               fill
               sizes="100vw"
