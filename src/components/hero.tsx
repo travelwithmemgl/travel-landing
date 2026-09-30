@@ -213,10 +213,17 @@ export function Hero({ dict }: { dict: Dictionary }) {
           </div>
         </div>
 
-        {/* Where the film has got to. Reading them is the whole point, so they
-            are buttons: a chapter is a place on the page, and a place on the
-            page should be reachable without a mouse wheel. */}
-        <div className="absolute inset-x-0 bottom-20 flex justify-end gap-6 px-6 sm:bottom-24 sm:px-10 lg:px-16">
+        {/*
+          * Everything pinned to the bottom, in one stack.
+          *
+          * The markers used to be placed at a measured offset above the search
+          * and the search at the very bottom, which put the markers over the
+          * first row of the search and the Explore button underneath the mobile
+          * tab bar — unreachable. Stacking them in one flow-bottom column means
+          * the only number anyone has to know is where the tab bar ends.
+          */}
+        <div className="above-tab-bar absolute inset-x-0 lg:bottom-0">
+        <div className="flex justify-end gap-6 px-6 pb-3 sm:px-10 lg:px-16">
           {dict.hero.chapters.map((entry, index) => (
             <button
               key={entry.label}
@@ -244,7 +251,6 @@ export function Hero({ dict }: { dict: Dictionary }) {
 
         {/* Drives the tour grid further down the page. */}
         <form
-          className="absolute inset-x-0 bottom-0"
           onSubmit={(e) => {
             e.preventDefault();
             search(filters);
@@ -277,6 +283,7 @@ export function Hero({ dict }: { dict: Dictionary }) {
             </button>
           </div>
         </form>
+        </div>
       </div>
     </section>
   );

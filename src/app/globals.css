@@ -70,6 +70,18 @@
   --font-sans: var(--font-inter), var(--font-noto-kr), ui-sans-serif, system-ui, sans-serif;
 }
 
+/*
+ * Clears the mobile tab bar.
+ *
+ * `bottom-nav` is `fixed ... lg:hidden` and about 4rem tall over the home
+ * indicator. Anything else pinned to the bottom of the viewport below `lg` has
+ * to start above it or it is simply not there — which is what happened to the
+ * hero's Explore button.
+ */
+@utility above-tab-bar {
+  bottom: calc(4.5rem + env(safe-area-inset-bottom));
+}
+
 /* Bottom inset for anything pinned above the home indicator. */
 @utility pb-safe {
   /* Room for the mobile tab bar; the bar itself sits above the home indicator. */
