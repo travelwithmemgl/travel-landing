@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   heroPoster,
   heroVideo,
@@ -78,7 +78,30 @@ export function Hero({ dict }: { dict: Dictionary }) {
       const travel = section.offsetHeight - window.innerHeight;
       if (travel <= 0) return setChapter(0);
       const passed = Math.min(Math.max(-section.getBoundingClientRect().top, 0), travel);
-      setChapter(Math.min(CHAPTERS - 1, Math.floor((passed / travel) * CHAPTERS)));
+      const progress = passed / travel;
+
+      setChapter(Math.min(CHAPTERS - 1, Math.floor(progress * CHAPTERS)));
+
+      /*
+       * The film does not play. It is scrubbed.
+       *
+       * Its frame is a function of the scroll position and nothing else, so the
+       * reader is not watching a video that happens to be behind some text —
+       * they are turning it. Stop scrolling and it stops on that frame; scroll
+       * back and it runs backwards.
+       *
+       * Playing it instead, even a chapter at a time, leaves it a still picture
+       * for most of the time anybody is looking at it, which is what it looked
+       * like: a video sitting there.
+       *
+       * The small delta guard keeps a queue of seeks from forming while the
+       * wheel is spinning; below about a frame's worth there is nothing to see.
+       */
+      const video = videoRef.current;
+      if (video?.duration) {
+        const at = Math.min(video.duration - 0.05, progress * video.duration);
+        if (Math.abs(video.currentTime - at) > 0.02) video.currentTime = at;
+      }
     };
 
     /*
@@ -100,31 +123,6 @@ export function Hero({ dict }: { dict: Dictionary }) {
       window.removeEventListener("resize", read);
     };
   }, []);
-
-  /**
-   * Play the chapter the scroll is in, then hold on its last frame.
-   *
-   * Not scrubbing: seeking a compressed film on every scroll frame stutters on
-   * anything but a fast machine, and the four cuts are where the meaning is
-   * anyway. So a chapter change seeks once, plays its few seconds, and stops —
-   * the picture waits there until the reader moves again.
-   */
-  const playChapter = useCallback(() => {
-    const video = videoRef.current;
-    if (!video?.duration) return;
-    const span = video.duration / CHAPTERS;
-    video.currentTime = chapter * span;
-    void video.play().catch(() => {});
-  }, [chapter]);
-
-  useEffect(playChapter, [playChapter]);
-
-  const onTimeUpdate = () => {
-    const video = videoRef.current;
-    if (!video?.duration) return;
-    const span = video.duration / CHAPTERS;
-    if (video.currentTime >= (chapter + 1) * span - 0.08) video.pause();
-  };
 
   const current = dict.hero.chapters[chapter];
 
@@ -150,9 +148,10 @@ export function Hero({ dict }: { dict: Dictionary }) {
             poster={heroPoster}
             muted
             playsInline
-            preload="metadata"
-            onLoadedMetadata={playChapter}
-            onTimeUpdate={onTimeUpdate}
+            /* The whole film, not just its header: every frame is a seek
+               target, and seeking into a part that has not arrived is the
+               stutter people mean when they say scroll video is janky. */
+            preload="auto"
             aria-hidden
             className="absolute inset-0 h-full w-full object-cover"
           />

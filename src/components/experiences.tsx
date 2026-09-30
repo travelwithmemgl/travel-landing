@@ -52,20 +52,22 @@ export function Experiences({ dict }: { dict: Dictionary }) {
                   />
                 </div>
 
-                <div
-                  className={`absolute -bottom-8 hidden aspect-square w-40 overflow-hidden rounded-2xl ring-8 ring-white sm:block xl:w-48 ${
-                    flipped ? "right-6" : "left-6"
-                  }`}
-                >
-                  <Image
-                    src={images.inset}
-                    placeholder={blurOf(images.inset)}
-                    alt={item.altInset}
-                    fill
-                    sizes="192px"
-                    className="object-cover"
-                  />
-                </div>
+                {images.inset && (
+                  <div
+                    className={`absolute -bottom-8 hidden aspect-square w-40 overflow-hidden rounded-2xl ring-8 ring-white sm:block xl:w-48 ${
+                      flipped ? "right-6" : "left-6"
+                    }`}
+                  >
+                    <Image
+                      src={images.inset}
+                      placeholder={blurOf(images.inset)}
+                      alt={item.altInset}
+                      fill
+                      sizes="192px"
+                      className="object-cover"
+                    />
+                  </div>
+                )}
               </div>
 
               <div className={flipped ? "lg:order-1" : ""}>

@@ -70,10 +70,21 @@ export const experienceKeys = [
 ] as const;
 export type ExperienceKey = (typeof experienceKeys)[number];
 
-export const experienceImages: Record<ExperienceKey, { main: string; inset: string }> = {
+/**
+ * The inset is optional, and three of the five no longer have one.
+ *
+ * It is a 192px square laid over the corner of the main photograph, which is a
+ * demanding slot: whatever goes in it is read at a glance or not at all. The
+ * gers on an overcast plain, the herd on a washed-out track and the fish in two
+ * hands were none of them that, and a weak square over a strong photograph
+ * takes something away from both.
+ *
+ * So the experiences that have one keep it and the rest show the main
+ * photograph alone, rather than the slot being filled for the sake of symmetry.
+ */
+export const experienceImages: Record<ExperienceKey, { main: string; inset?: string }> = {
   mongolia: {
     main: "/photos/exp-mongolia.jpg",
-    inset: "/photos/exp-mongolia-inset.jpg",
   },
   naadam: {
     main: "/photos/exp-naadam.jpg",
@@ -81,7 +92,6 @@ export const experienceImages: Record<ExperienceKey, { main: string; inset: stri
   },
   enduro: {
     main: "/photos/exp-enduro.jpg",
-    inset: "/photos/exp-enduro-inset.jpg",
   },
   snowLeopard: {
     main: "/photos/exp-leopard.jpg",
@@ -89,7 +99,6 @@ export const experienceImages: Record<ExperienceKey, { main: string; inset: stri
   },
   fishing: {
     main: "/photos/exp-fishing.jpg",
-    inset: "/photos/exp-fishing-inset.jpg",
   },
 };
 
