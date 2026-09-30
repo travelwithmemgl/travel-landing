@@ -33,7 +33,18 @@ import { emptyTripFilters, useTripSearch, type TripFilters } from "./trip-search
  * land and be read.
  */
 const CHAPTERS = 4;
-const SCREENS_PER_CHAPTER = 1.3;
+
+/**
+ * How much scrolling a chapter is worth, by how much screen there is.
+ *
+ * On a desktop, 1.3 — long enough for four lines to land and be read, and the
+ * proportion the page this is modelled on uses.
+ *
+ * On a phone the same number would be five screens of thumb for a picture that
+ * is not even moving, since the film is not sent there. 0.8 keeps all four
+ * lines and asks for about a third of the travel.
+ */
+const SCREENS_PER_CHAPTER = { roomy: 1.3, narrow: 0.8 };
 
 export function Hero({ dict }: { dict: Dictionary }) {
   const { search } = useTripSearch();
@@ -55,11 +66,15 @@ export function Hero({ dict }: { dict: Dictionary }) {
    * is a second-paint luxury either way.
    */
   const [wantsFilm, setWantsFilm] = useState(false);
+  const [perChapter, setPerChapter] = useState(SCREENS_PER_CHAPTER.narrow);
 
   useEffect(() => {
     const roomy = window.matchMedia("(min-width: 768px)");
     const calm = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const decide = () => setWantsFilm(roomy.matches && !calm.matches);
+    const decide = () => {
+      setWantsFilm(roomy.matches && !calm.matches);
+      setPerChapter(roomy.matches ? SCREENS_PER_CHAPTER.roomy : SCREENS_PER_CHAPTER.narrow);
+    };
     decide();
     roomy.addEventListener("change", decide);
     calm.addEventListener("change", decide);
@@ -98,7 +113,17 @@ export function Hero({ dict }: { dict: Dictionary }) {
        * wheel is spinning; below about a frame's worth there is nothing to see.
        */
       const video = videoRef.current;
-      if (video?.duration) {
+      if (video?.duration && !video.seeking) {
+        /*
+         * One seek at a time.
+         *
+         * Scroll fires faster than a 1080p frame can be decoded, and a seek
+         * issued while the last one is still running does not replace it — it
+         * queues behind it. A spin of the wheel builds a backlog the picture
+         * then has to work through, arriving somewhere the reader left several
+         * seconds ago. Skipping while `seeking` drops the intermediate
+         * positions instead, and the next scroll event carries the current one.
+         */
         const at = Math.min(video.duration - 0.05, progress * video.duration);
         if (Math.abs(video.currentTime - at) > 0.02) video.currentTime = at;
       }
@@ -127,7 +152,7 @@ export function Hero({ dict }: { dict: Dictionary }) {
   const current = dict.hero.chapters[chapter];
 
   return (
-    <section ref={sectionRef} id="top" style={{ height: `${CHAPTERS * SCREENS_PER_CHAPTER * 100}svh` }}
+    <section ref={sectionRef} id="top" style={{ height: `${CHAPTERS * perChapter * 100}svh` }}
       className="relative">
       <div className="sticky top-0 isolate h-svh min-h-[34rem] overflow-hidden">
         <Image
