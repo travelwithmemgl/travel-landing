@@ -18,10 +18,30 @@
   },
   "hero": {
     "eyebrow": "Travel With Me",
-    "title": "몽골",
-    "slogan": "Travel With Me와 함께 모험의 새로운 장을 시작하세요.",
     "alt": "고르히-테렐지 국립공원의 겹겹이 이어진 초록 언덕과 숲",
-    "explore": "둘러보기"
+    "explore": "둘러보기",
+    "chapters": [
+      {
+        "label": "도착",
+        "title": "몽골",
+        "sub": "Travel With Me와 함께 모험의 새로운 장을 시작하세요."
+      },
+      {
+        "label": "승마",
+        "title": "길 자체가 목적지.",
+        "sub": "끝없는 초원, 하나의 길, 그리고 언제나 더 멀리 있는 산."
+      },
+      {
+        "label": "밤",
+        "title": "하늘보다 많은 별.",
+        "sub": "펠트 문, 뜨거운 난로, 그리고 밖에서 잦아드는 가축 떼."
+      },
+      {
+        "label": "귀환",
+        "title": "달라져서 돌아옵니다.",
+        "sub": "소규모 그룹, 이곳에서 자란 가이드, 도착 전에 끝나는 서류."
+      }
+    ]
   },
   "proof": {
     "brand": "Travel With Me LLC",

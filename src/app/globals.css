@@ -43,6 +43,18 @@
     }
   }
 
+  /* Each hero chapter arrives rather than cross-dissolving into the last. */
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(1.5rem);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
   @keyframes marquee {
     from {
       transform: translateX(0);

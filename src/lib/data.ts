@@ -29,6 +29,20 @@ export function pagePath(lang: string, slug: string) {
 
 export const heroImage = "/photos/hero.jpg";
 
+/**
+ * The hero's film, and the frame it opens on.
+ *
+ * Fifteen seconds in four movements — the hero scrolls through them rather than
+ * playing them straight, so the poster is the film's own first frame and not a
+ * separate photograph: whatever a visitor sees before the video arrives is
+ * exactly what it starts from.
+ *
+ * H.264 with no audio track, which is what makes it autoplay anywhere. The
+ * original was HEVC, which Safari plays and most other browsers do not.
+ */
+export const heroVideo = "/video/hero.mp4";
+export const heroPoster = "/photos/hero-poster.jpg";
+
 export const proofAvatars = [
   "/photos/avatar-1.jpg",
   "/photos/avatar-2.jpg",

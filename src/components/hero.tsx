@@ -1,95 +1,253 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
-  heroImage,
+  heroPoster,
+  heroVideo,
   regionKeys,
   tripTypeKeys,
   type RegionKey,
   type TripTypeKey,
 } from "@/lib/data";
 import type { Dictionary } from "@/lib/dictionary";
+import { blurOf } from "@/lib/blur";
 import { ChevronDownIcon } from "./icons";
 import { emptyTripFilters, useTripSearch, type TripFilters } from "./trip-search";
-import { blurOf } from "@/lib/blur";
+
+/**
+ * The hero is four screens tall and does not move.
+ *
+ * Scrolling it does not push it away: the film stays pinned and the page reads
+ * it a chapter at a time, the way the four movements were shot. Each chapter
+ * gets its own line, and the lines alternate left and right so the eye has to
+ * travel with the scroll rather than sit still while the picture changes behind
+ * it.
+ *
+ * The count is not a setting. It is how the film is cut, and the component
+ * divides the running time by it, so a film of any length lands in the same
+ * four beats.
+ */
+const CHAPTERS = 4;
 
 export function Hero({ dict }: { dict: Dictionary }) {
   const { search } = useTripSearch();
   const [filters, setFilters] = useState<TripFilters>(emptyTripFilters);
 
+  const sectionRef = useRef<HTMLElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [chapter, setChapter] = useState(0);
+
+  /**
+   * Whether this visitor gets the film at all.
+   *
+   * A phone does not: fourteen megabytes to decorate a screen nobody asked to
+   * have decorated is somebody's data plan, and the poster is the same frame
+   * the film opens on, so nothing is missing — the picture simply holds still.
+   * Neither does anybody who has asked their system for less motion.
+   *
+   * It starts false so the server and the first client render agree; the film
+   * is a second-paint luxury either way.
+   */
+  const [wantsFilm, setWantsFilm] = useState(false);
+
+  useEffect(() => {
+    const roomy = window.matchMedia("(min-width: 768px)");
+    const calm = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const decide = () => setWantsFilm(roomy.matches && !calm.matches);
+    decide();
+    roomy.addEventListener("change", decide);
+    calm.addEventListener("change", decide);
+    return () => {
+      roomy.removeEventListener("change", decide);
+      calm.removeEventListener("change", decide);
+    };
+  }, []);
+
+  /** Which chapter the scroll position is inside. */
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const read = () => {
+      const travel = section.offsetHeight - window.innerHeight;
+      if (travel <= 0) return setChapter(0);
+      const passed = Math.min(Math.max(-section.getBoundingClientRect().top, 0), travel);
+      setChapter(Math.min(CHAPTERS - 1, Math.floor((passed / travel) * CHAPTERS)));
+    };
+
+    // Scroll fires far more often than a chapter can change, and every read
+    // measures the layout; once a frame is the most it can be worth.
+    let queued = false;
+    const onScroll = () => {
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(() => {
+        queued = false;
+        read();
+      });
+    };
+
+    read();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
+
+  /**
+   * Play the chapter the scroll is in, then hold on its last frame.
+   *
+   * Not scrubbing: seeking a compressed film on every scroll frame stutters on
+   * anything but a fast machine, and the four cuts are where the meaning is
+   * anyway. So a chapter change seeks once, plays its few seconds, and stops —
+   * the picture waits there until the reader moves again.
+   */
+  const playChapter = useCallback(() => {
+    const video = videoRef.current;
+    if (!video?.duration) return;
+    const span = video.duration / CHAPTERS;
+    video.currentTime = chapter * span;
+    void video.play().catch(() => {});
+  }, [chapter]);
+
+  useEffect(playChapter, [playChapter]);
+
+  const onTimeUpdate = () => {
+    const video = videoRef.current;
+    if (!video?.duration) return;
+    const span = video.duration / CHAPTERS;
+    if (video.currentTime >= (chapter + 1) * span - 0.08) video.pause();
+  };
+
+  const current = dict.hero.chapters[chapter];
+
   return (
-    <section
-      id="top"
-      className="relative isolate min-h-[36rem] w-full overflow-hidden sm:min-h-[660px] lg:h-[94svh]"
-    >
-      <Image
-        src={heroImage}
-        placeholder={blurOf(heroImage)}
-        alt={dict.hero.alt}
-        fill
-        priority
-        sizes="100vw"
-        quality={90}
-        className="object-cover"
-      />
-      {/* Heavy enough at both ends to keep the headline and slogan readable. */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/30 to-black/65" />
+    <section ref={sectionRef} id="top" className="relative h-[400svh]">
+      <div className="sticky top-0 isolate h-svh min-h-[34rem] overflow-hidden">
+        <Image
+          src={heroPoster}
+          placeholder={blurOf(heroPoster)}
+          alt={dict.hero.alt}
+          fill
+          priority
+          sizes="100vw"
+          quality={90}
+          className="object-cover"
+        />
 
-      <div className="relative flex min-h-[36rem] flex-col items-center justify-center px-6 pb-44 pt-24 text-center sm:min-h-[660px] sm:pb-40 sm:pt-28 lg:h-full">
-        <span className="flex items-center gap-3 text-[11px] uppercase tracking-[0.28em] text-white/85">
-          <span className="h-px w-8 bg-white/50" />
-          {dict.hero.eyebrow}
-          <span className="h-px w-8 bg-white/50" />
-        </span>
-
-        {/* clamp() rather than raw vw: long Mongolian and Korean titles still fit. */}
-        <h1 className="display mt-4 text-balance text-[clamp(3.25rem,17vw,12rem)] font-medium text-white sm:mt-5">
-          {dict.hero.title}
-        </h1>
-
-        <p className="mt-5 max-w-md text-balance text-[13px] leading-relaxed text-white sm:text-[15px]">
-          {dict.hero.slogan}
-        </p>
-      </div>
-
-      {/* Drives the tour grid further down the page. */}
-      <form
-        className="absolute inset-x-0 bottom-0"
-        onSubmit={(e) => {
-          e.preventDefault();
-          search(filters);
-        }}
-      >
-        <div className="grid grid-cols-2 bg-black/40 backdrop-blur-md md:grid-cols-[repeat(2,1fr)_auto]">
-          <HeroField
-            label={dict.trips.filters.destination}
-            placeholder={dict.trips.placeholders.destination}
-            value={filters.destination}
-            options={regionKeys.map((key) => ({ value: key, label: dict.trips.regions[key] }))}
-            onChange={(value) =>
-              setFilters((f) => ({ ...f, destination: value as RegionKey | "" }))
-            }
+        {wantsFilm && (
+          <video
+            ref={videoRef}
+            src={heroVideo}
+            poster={heroPoster}
+            muted
+            playsInline
+            preload="metadata"
+            onLoadedMetadata={playChapter}
+            onTimeUpdate={onTimeUpdate}
+            aria-hidden
+            className="absolute inset-0 h-full w-full object-cover"
           />
-          <HeroField
-            label={dict.trips.filters.category}
-            placeholder={dict.trips.placeholders.category}
-            value={filters.category}
-            options={tripTypeKeys.map((key) => ({ value: key, label: dict.trips.types[key] }))}
-            onChange={(value) =>
-              setFilters((f) => ({ ...f, category: value as TripTypeKey | "" }))
-            }
-            bordered
-          />
+        )}
 
-          <button
-            type="submit"
-            className="focus-light col-span-2 min-h-[3.25rem] bg-accent px-10 text-sm font-medium text-white transition hover:bg-accent-strong active:bg-accent-strong md:col-span-1 md:py-5"
+        {/* Heavy enough at both ends to keep the headline and the search legible. */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/25 to-black/75" />
+
+        <div className="relative flex h-full flex-col justify-center px-6 pb-48 pt-24 sm:px-10 sm:pb-44 lg:px-16">
+          <div
+            /* The key restarts the fade, so each chapter arrives rather than
+               cross-dissolving into the one before it. */
+            key={chapter}
+            className={`max-w-3xl motion-safe:animate-[fade-up_700ms_cubic-bezier(0.16,1,0.3,1)_both] ${
+              chapter % 2 === 1 ? "self-end text-right" : "self-start text-left"
+            }`}
           >
-            {dict.hero.explore}
-          </button>
+            <span className="flex items-center gap-3 text-[11px] uppercase tracking-[0.28em] text-white/85">
+              {chapter % 2 === 1 && <span className="h-px w-8 bg-white/50" />}
+              {dict.hero.eyebrow}
+              {chapter % 2 === 0 && <span className="h-px w-8 bg-white/50" />}
+            </span>
+
+            {/* clamp() rather than raw vw: the long Mongolian and Korean lines
+                still have to fit the same box the one-word English does. */}
+            <h1 className="display mt-4 text-balance text-[clamp(2.75rem,7.5vw,6.5rem)] font-medium leading-[0.95] text-white">
+              {current.title}
+            </h1>
+
+            <p className="mt-5 max-w-lg text-balance text-[13px] leading-relaxed text-white/90 sm:text-[15px]">
+              {current.sub}
+            </p>
+          </div>
         </div>
-      </form>
+
+        {/* Where the film has got to. Reading them is the whole point, so they
+            are buttons: a chapter is a place on the page, and a place on the
+            page should be reachable without a mouse wheel. */}
+        <div className="absolute inset-x-0 bottom-20 flex justify-end gap-6 px-6 sm:bottom-24 sm:px-10 lg:px-16">
+          {dict.hero.chapters.map((entry, index) => (
+            <button
+              key={entry.label}
+              type="button"
+              aria-current={index === chapter}
+              onClick={() => {
+                const section = sectionRef.current;
+                if (!section) return;
+                const travel = section.offsetHeight - window.innerHeight;
+                window.scrollTo({
+                  top: section.offsetTop + (travel * index) / CHAPTERS + 1,
+                  behavior: "smooth",
+                });
+              }}
+              className={`focus-light border-b pb-1 text-[11px] tracking-wide transition ${
+                index === chapter
+                  ? "border-accent text-white"
+                  : "border-transparent text-white/60 hover:text-white/90"
+              }`}
+            >
+              {entry.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Drives the tour grid further down the page. */}
+        <form
+          className="absolute inset-x-0 bottom-0"
+          onSubmit={(e) => {
+            e.preventDefault();
+            search(filters);
+          }}
+        >
+          <div className="grid grid-cols-2 bg-black/40 backdrop-blur-md md:grid-cols-[repeat(2,1fr)_auto]">
+            <HeroField
+              label={dict.trips.filters.destination}
+              placeholder={dict.trips.placeholders.destination}
+              value={filters.destination}
+              options={regionKeys.map((key) => ({ value: key, label: dict.trips.regions[key] }))}
+              onChange={(value) =>
+                setFilters((f) => ({ ...f, destination: value as RegionKey | "" }))
+              }
+            />
+            <HeroField
+              label={dict.trips.filters.category}
+              placeholder={dict.trips.placeholders.category}
+              value={filters.category}
+              options={tripTypeKeys.map((key) => ({ value: key, label: dict.trips.types[key] }))}
+              onChange={(value) => setFilters((f) => ({ ...f, category: value as TripTypeKey | "" }))}
+              bordered
+            />
+
+            <button
+              type="submit"
+              className="focus-light col-span-2 min-h-[3.25rem] bg-accent px-10 text-sm font-medium text-white transition hover:bg-accent-strong active:bg-accent-strong md:col-span-1 md:py-5"
+            >
+              {dict.hero.explore}
+            </button>
+          </div>
+        </form>
+      </div>
     </section>
   );
 }

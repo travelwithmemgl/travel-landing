@@ -18,10 +18,30 @@
   },
   "hero": {
     "eyebrow": "Travel With Me",
-    "title": "Mongolia",
-    "slogan": "Start a new chapter of adventure with Travel With Me.",
     "alt": "Layered green hills and forested ridges in Gorkhi-Terelj National Park",
-    "explore": "Explore"
+    "explore": "Explore",
+    "chapters": [
+      {
+        "label": "Arrive",
+        "title": "Mongolia",
+        "sub": "Start a new chapter of adventure with Travel With Me."
+      },
+      {
+        "label": "Ride",
+        "title": "The road is the destination.",
+        "sub": "Days of open steppe, one track, and the mountains always further on."
+      },
+      {
+        "label": "Night",
+        "title": "More stars than sky.",
+        "sub": "A felt door, a hot stove, and the herd settling down outside it."
+      },
+      {
+        "label": "Return",
+        "title": "Come back changed.",
+        "sub": "Small groups, guides who grew up here, and the paperwork done before you land."
+      }
+    ]
   },
   "proof": {
     "brand": "Travel With Me LLC",
