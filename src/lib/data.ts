@@ -43,12 +43,17 @@ export const heroImage = "/photos/hero.jpg";
 export const heroVideo = "/video/hero.mp4";
 
 /**
- * The same film at 640x360, for a phone.
+ * The same film at 960x540 and half the frame rate, for a phone.
  *
- * Three megabytes against ten. The picture sits behind a scrim with a headline
- * over it, at a size where the softness is not what anybody is looking at, and
- * on a cellular connection the difference is the difference between the film
- * arriving and the film being a decision somebody regrets.
+ * It was 640 wide, which looked exactly like what it was on any recent phone: a
+ * screen 400 points across at three device pixels each is 1200 pixels of film
+ * asked of a 640-pixel file, and upscaling by nearly two is visible however
+ * dark the scrim over it. 960 upscales by about a fifth instead.
+ *
+ * The frame rate pays for it. Twelve a second is 4MB against 7, and a film
+ * nobody plays does not need twenty-four — the reader sets the pace, and across
+ * four screens of scrolling 181 frames is still a new one every thirteen
+ * pixels.
  */
 export const heroVideoSmall = "/video/hero-small.mp4";
 export const heroPoster = "/photos/hero-poster.jpg";
