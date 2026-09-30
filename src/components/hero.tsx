@@ -16,19 +16,24 @@ import { ChevronDownIcon } from "./icons";
 import { emptyTripFilters, useTripSearch, type TripFilters } from "./trip-search";
 
 /**
- * The hero is four screens tall and does not move.
+ * The hero is pinned, and long.
  *
- * Scrolling it does not push it away: the film stays pinned and the page reads
- * it a chapter at a time, the way the four movements were shot. Each chapter
- * gets its own line, and the lines alternate left and right so the eye has to
- * travel with the scroll rather than sit still while the picture changes behind
- * it.
+ * Scrolling does not push it away: the film stays and the page reads it a
+ * chapter at a time, the way the four movements were shot. Each chapter gets
+ * its own line, and the lines alternate left and right so the eye travels with
+ * the scroll rather than sitting still while the picture changes behind it.
  *
  * The count is not a setting. It is how the film is cut, and the component
- * divides the running time by it, so a film of any length lands in the same
- * four beats.
+ * divides the running time by it, so a recut lands in the same beats.
+ *
+ * A chapter is worth more than one screen of scrolling. At exactly one, the
+ * hero holds for three screens and lets go while it still feels like the
+ * opening — it reads as the hero sliding away rather than a film that ended.
+ * At 1.3 it holds for more than four, which is long enough for four lines to
+ * land and be read.
  */
 const CHAPTERS = 4;
+const SCREENS_PER_CHAPTER = 1.3;
 
 export function Hero({ dict }: { dict: Dictionary }) {
   const { search } = useTripSearch();
@@ -125,7 +130,8 @@ export function Hero({ dict }: { dict: Dictionary }) {
   const current = dict.hero.chapters[chapter];
 
   return (
-    <section ref={sectionRef} id="top" className="relative h-[400svh]">
+    <section ref={sectionRef} id="top" style={{ height: `${CHAPTERS * SCREENS_PER_CHAPTER * 100}svh` }}
+      className="relative">
       <div className="sticky top-0 isolate h-svh min-h-[34rem] overflow-hidden">
         <Image
           src={heroPoster}
