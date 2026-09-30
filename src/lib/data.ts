@@ -41,6 +41,16 @@ export const heroImage = "/photos/hero.jpg";
  * original was HEVC, which Safari plays and most other browsers do not.
  */
 export const heroVideo = "/video/hero.mp4";
+
+/**
+ * The same film at 640x360, for a phone.
+ *
+ * Three megabytes against ten. The picture sits behind a scrim with a headline
+ * over it, at a size where the softness is not what anybody is looking at, and
+ * on a cellular connection the difference is the difference between the film
+ * arriving and the film being a decision somebody regrets.
+ */
+export const heroVideoSmall = "/video/hero-small.mp4";
 export const heroPoster = "/photos/hero-poster.jpg";
 
 export const proofAvatars = [

@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import {
   heroPoster,
   heroVideo,
+  heroVideoSmall,
   regionKeys,
   tripTypeKeys,
   type RegionKey,
@@ -40,11 +41,10 @@ const CHAPTERS = 4;
  * On a desktop, 1.3 — long enough for four lines to land and be read, and the
  * proportion the page this is modelled on uses.
  *
- * On a phone the same number would be five screens of thumb for a picture that
- * is not even moving, since the film is not sent there. 0.8 keeps all four
- * lines and asks for about a third of the travel.
+ * On a phone, 1.0 — the film runs there too, but a thumb covers less ground per
+ * stroke than a wheel and four screens is already a long way to ask.
  */
-const SCREENS_PER_CHAPTER = { roomy: 1.3, narrow: 0.8 };
+const SCREENS_PER_CHAPTER = { roomy: 1.3, narrow: 1.0 };
 
 export function Hero({ dict }: { dict: Dictionary }) {
   const { search } = useTripSearch();
@@ -55,24 +55,24 @@ export function Hero({ dict }: { dict: Dictionary }) {
   const [chapter, setChapter] = useState(0);
 
   /**
-   * Whether this visitor gets the film at all.
+   * Whether this visitor gets the film, and which cut of it.
    *
-   * A phone does not: fourteen megabytes to decorate a screen nobody asked to
-   * have decorated is somebody's data plan, and the poster is the same frame
-   * the film opens on, so nothing is missing — the picture simply holds still.
-   * Neither does anybody who has asked their system for less motion.
+   * Everybody gets one now — a phone the 3MB cut, a desktop the 10MB one — and
+   * nobody who has asked their system for less motion gets either. For them the
+   * poster is the film's own first frame, so the picture simply holds still
+   * while the lines go on changing.
    *
-   * It starts false so the server and the first client render agree; the film
-   * is a second-paint luxury either way.
+   * `film` starts empty so the server and the first client render agree; the
+   * film is a second-paint luxury either way.
    */
-  const [wantsFilm, setWantsFilm] = useState(false);
+  const [film, setFilm] = useState("");
   const [perChapter, setPerChapter] = useState(SCREENS_PER_CHAPTER.narrow);
 
   useEffect(() => {
     const roomy = window.matchMedia("(min-width: 768px)");
     const calm = window.matchMedia("(prefers-reduced-motion: reduce)");
     const decide = () => {
-      setWantsFilm(roomy.matches && !calm.matches);
+      setFilm(calm.matches ? "" : roomy.matches ? heroVideo : heroVideoSmall);
       setPerChapter(roomy.matches ? SCREENS_PER_CHAPTER.roomy : SCREENS_PER_CHAPTER.narrow);
     };
     decide();
@@ -166,10 +166,11 @@ export function Hero({ dict }: { dict: Dictionary }) {
           className="object-cover"
         />
 
-        {wantsFilm && (
+        {film && (
           <video
             ref={videoRef}
-            src={heroVideo}
+            key={film}
+            src={film}
             poster={heroPoster}
             muted
             playsInline
