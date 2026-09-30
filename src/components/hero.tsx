@@ -81,24 +81,23 @@ export function Hero({ dict }: { dict: Dictionary }) {
       setChapter(Math.min(CHAPTERS - 1, Math.floor((passed / travel) * CHAPTERS)));
     };
 
-    // Scroll fires far more often than a chapter can change, and every read
-    // measures the layout; once a frame is the most it can be worth.
-    let queued = false;
-    const onScroll = () => {
-      if (queued) return;
-      queued = true;
-      requestAnimationFrame(() => {
-        queued = false;
-        read();
-      });
-    };
-
+    /*
+     * Read on the event itself rather than inside requestAnimationFrame.
+     *
+     * A frame-throttled handler is the usual advice, and it is wrong here: rAF
+     * does not run in a background tab, so a tab restored mid-page — or driven
+     * by anything that is not the frontmost window — sticks on whichever
+     * chapter it was left holding. The work being throttled is one
+     * `getBoundingClientRect` and a `setState` that mostly sets the value it
+     * already had; the browser already coalesces scroll events, and React
+     * already drops a state write that changes nothing.
+     */
     read();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
+    window.addEventListener("scroll", read, { passive: true });
+    window.addEventListener("resize", read);
     return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
+      window.removeEventListener("scroll", read);
+      window.removeEventListener("resize", read);
     };
   }, []);
 
