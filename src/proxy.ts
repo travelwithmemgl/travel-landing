@@ -1,26 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { defaultLocale, isLocale, locales } from "@/lib/i18n";
-
-/** Picks the best supported locale from the Accept-Language header. */
-function detectLocale(request: NextRequest) {
-  const header = request.headers.get("accept-language");
-  if (!header) return defaultLocale;
-
-  const ranked = header
-    .split(",")
-    .map((part) => {
-      const [tag, ...params] = part.trim().split(";");
-      const q = params.find((p) => p.trim().startsWith("q="));
-      return { tag: tag.toLowerCase(), q: q ? Number(q.split("=")[1]) : 1 };
-    })
-    .sort((a, b) => b.q - a.q);
-
-  for (const { tag } of ranked) {
-    const base = tag.split("-")[0];
-    if (isLocale(base)) return base;
-  }
-  return defaultLocale;
-}
+import { defaultLocale, locales } from "@/lib/i18n";
 
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -30,8 +9,10 @@ export function proxy(request: NextRequest) {
   );
   if (hasLocale) return;
 
+  // The site always opens in Mongolian, whatever the browser's language;
+  // English and Korean are one tap away in the header switcher.
   const url = request.nextUrl.clone();
-  url.pathname = `/${detectLocale(request)}${pathname === "/" ? "" : pathname}`;
+  url.pathname = `/${defaultLocale}${pathname === "/" ? "" : pathname}`;
   return NextResponse.redirect(url);
 }
 
