@@ -230,11 +230,31 @@ export function PhoneIcon(props: IconProps) {
   );
 }
 
+/** The solid "f" itself — read at a glance, where an outline of a box is not. */
 export function FacebookIcon(props: IconProps) {
   return (
-    <svg {...base} {...props}>
-      <rect x="3" y="3" width="18" height="18" rx="4" />
-      <path d="M15.2 7.6h-1.3a2 2 0 0 0-2 2V21M9.6 13.2h4.8" />
+    <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
+      <path d="M13 21v-8h2.7l.4-3H13V8.3c0-.9.3-1.5 1.5-1.5h1.7V4.1c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.4-4 4v2H7.6v3h2.2v8H13Z" />
     </svg>
   );
 }
+
+export function InstagramIcon(props: IconProps) {
+  return (
+    <svg {...base} strokeWidth={1.9} {...props}>
+      <rect x="3.5" y="3.5" width="17" height="17" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+/**
+ * The two social marks sit on their own brand colours wherever a channel gets
+ * a tile — the blue and the sunset gradient are what people look for.
+ */
+export const socialTile = {
+  facebook: "bg-[#1877f2] text-white shadow-lg shadow-[#1877f2]/30",
+  instagram:
+    "bg-[linear-gradient(45deg,#f09433_0%,#e6683c_25%,#dc2743_50%,#cc2366_75%,#bc1888_100%)] text-white shadow-lg shadow-[#dc2743]/30",
+};

@@ -403,7 +403,8 @@
     "submit": "일정 받아보기",
     "mailSubject": "여행 프로그램 문의",
     "call": "전화 문의",
-    "facebook": "페이스북 문의"
+    "facebook": "페이스북 문의",
+    "instagram": "인스타그램 보기"
   },
   "footer": {
     "tagline": "해외·국내 여행, 맞춤 프로그램, 비자 지원 — Travel With Me LLC.",
@@ -449,6 +450,7 @@
     "phone": "전화",
     "email": "이메일",
     "facebook": "페이스북",
+    "instagram": "인스타그램",
     "note": "몽골어 · 영어 · 한국어로 응대합니다."
   }
 }

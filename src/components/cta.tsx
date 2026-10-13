@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { contact, ctaImage } from "@/lib/data";
 import type { Dictionary } from "@/lib/dictionary";
-import { ArrowUpRightIcon, FacebookIcon, MailIcon, PhoneIcon } from "./icons";
+import { ArrowUpRightIcon, FacebookIcon, InstagramIcon, MailIcon, PhoneIcon, socialTile } from "./icons";
 import { blurOf } from "@/lib/blur";
 
 export function CallToAction({ dict }: { dict: Dictionary }) {
@@ -52,10 +52,21 @@ export function CallToAction({ dict }: { dict: Dictionary }) {
               target="_blank"
               rel="noreferrer noopener"
               aria-label={dict.cta.facebook}
-              className="focus-light flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/40 px-6 text-[13px] font-medium text-white transition hover:bg-white/15"
+              className={`focus-light flex min-h-12 items-center justify-center gap-2 rounded-full px-6 text-[13px] font-medium transition hover:-translate-y-0.5 hover:brightness-110 sm:w-12 sm:px-0 ${socialTile.facebook}`}
             >
-              <FacebookIcon className="h-4 w-4" />
+              <FacebookIcon className="h-5 w-5" />
               <span className="sm:hidden">{dict.cta.facebook}</span>
+            </a>
+
+            <a
+              href={contact.instagram}
+              target="_blank"
+              rel="noreferrer noopener"
+              aria-label={dict.cta.instagram}
+              className={`focus-light flex min-h-12 items-center justify-center gap-2 rounded-full px-6 text-[13px] font-medium transition hover:-translate-y-0.5 hover:brightness-110 sm:w-12 sm:px-0 ${socialTile.instagram}`}
+            >
+              <InstagramIcon className="h-5 w-5" />
+              <span className="sm:hidden">{dict.cta.instagram}</span>
             </a>
           </div>
         </div>

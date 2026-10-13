@@ -9,22 +9,43 @@ import {
   ArrowUpRightIcon,
   ChevronDownIcon,
   FacebookIcon,
+  InstagramIcon,
   MailIcon,
   PhoneIcon,
+  socialTile,
 } from "./icons";
 
 type ContactCard = {
-  key: "phone" | "email" | "facebook";
+  key: "phone" | "email" | "facebook" | "instagram";
   href: string;
   value: string;
   Icon: (props: React.SVGProps<SVGSVGElement>) => React.ReactElement;
+  /** Phone and email sit on plain white; the social marks keep their own colours. */
+  tile: string;
   external?: boolean;
 };
 
+const plainTile = "bg-white text-ink";
+
 const contactCards: ContactCard[] = [
-  { key: "phone", href: contact.phoneHref, value: contact.phone, Icon: PhoneIcon },
-  { key: "email", href: `mailto:${contact.email}`, value: contact.email, Icon: MailIcon },
-  { key: "facebook", href: contact.facebook, value: "Travel With Me", Icon: FacebookIcon, external: true },
+  { key: "phone", href: contact.phoneHref, value: contact.phone, Icon: PhoneIcon, tile: plainTile },
+  { key: "email", href: `mailto:${contact.email}`, value: contact.email, Icon: MailIcon, tile: plainTile },
+  {
+    key: "facebook",
+    href: contact.facebook,
+    value: "Travel With Me",
+    Icon: FacebookIcon,
+    tile: socialTile.facebook,
+    external: true,
+  },
+  {
+    key: "instagram",
+    href: contact.instagram,
+    value: contact.instagramHandle,
+    Icon: InstagramIcon,
+    tile: socialTile.instagram,
+    external: true,
+  },
 ];
 
 /**
@@ -109,23 +130,26 @@ export function SiteFooter({ dict, lang }: { dict: Dictionary; lang: Locale }) {
           </div>
         </div>
 
-        {/* The three ways to reach us, each one a card with its number or address in full. */}
-        <div className="mt-16 sm:mt-20">
-          <div className="flex flex-col gap-1.5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
+        {/* Every way to reach us, each one a card with its number, address or handle in full. */}
+        <div className="mt-16 grid gap-8 border-t border-white/10 pt-12 sm:mt-20 sm:pt-16 lg:grid-cols-12 lg:gap-8">
+          <div className="lg:col-span-4">
             <h3 className={eyebrow}>{dict.footer.contact}</h3>
-            <p className="text-[12px] text-white/45">{dict.channels.note}</p>
+            <p className="display mt-4 text-3xl font-medium sm:text-4xl">{dict.channels.title}</p>
+            <p className="mt-4 max-w-xs text-[13px] leading-relaxed text-white/55">{dict.channels.note}</p>
           </div>
 
-          <ul className="mt-5 grid gap-3 md:grid-cols-3">
-            {contactCards.map(({ key, href, value, Icon, external }) => (
+          <ul className="grid gap-3 sm:grid-cols-2 lg:col-span-8">
+            {contactCards.map(({ key, href, value, Icon, tile, external }) => (
               <li key={key}>
                 <a
                   href={href}
                   {...(external ? { target: "_blank", rel: "noreferrer noopener" } : {})}
                   className="focus-light group flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.03] p-4 transition duration-300 hover:border-white/25 hover:bg-white/[0.07] sm:p-5"
                 >
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white/10 transition duration-300 group-hover:bg-white group-hover:text-ink">
-                    <Icon className="h-[18px] w-[18px]" />
+                  <span
+                    className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl transition duration-300 group-hover:-rotate-6 group-hover:scale-110 ${tile}`}
+                  >
+                    <Icon className="h-[22px] w-[22px]" />
                   </span>
                   <span className="min-w-0">
                     <span className="block text-[11px] text-white/50">{dict.channels[key]}</span>

@@ -9,13 +9,15 @@ import {
   CloseIcon,
   FacebookIcon,
   GlobeIcon,
+  InstagramIcon,
   MailIcon,
   PhoneIcon,
+  socialTile,
 } from "./icons";
 
 /**
  * Contact is an action rather than a destination: every "Contact" control on
- * the site opens this dialog with the three real channels, so the phone number
+ * the site opens this dialog with every real channel, so the phone number
  * is one tap away from wherever the reader happens to be.
  *
  * Each trigger owns its own dialog — only one can be open at a time, and the
@@ -70,8 +72,12 @@ type Channel = {
   value: string;
   href: string;
   Icon: (props: React.SVGProps<SVGSVGElement>) => React.ReactElement;
+  /** Phone and email sit on ink; the social marks keep their own colours. */
+  tile: string;
   external?: boolean;
 };
+
+const plainTile = "bg-ink text-white";
 
 function ContactDialog({ dict, onClose }: { dict: Dictionary; onClose: () => void }) {
   const panelRef = useRef<HTMLDivElement>(null);
@@ -79,14 +85,31 @@ function ContactDialog({ dict, onClose }: { dict: Dictionary; onClose: () => voi
 
   const mailto = `mailto:${contact.email}?subject=${encodeURIComponent(dict.cta.mailSubject)}`;
   const channels: Channel[] = [
-    { key: "phone", label: dict.channels.phone, value: contact.phone, href: contact.phoneHref, Icon: PhoneIcon },
-    { key: "email", label: dict.channels.email, value: contact.email, href: mailto, Icon: MailIcon },
+    {
+      key: "phone",
+      label: dict.channels.phone,
+      value: contact.phone,
+      href: contact.phoneHref,
+      Icon: PhoneIcon,
+      tile: plainTile,
+    },
+    { key: "email", label: dict.channels.email, value: contact.email, href: mailto, Icon: MailIcon, tile: plainTile },
     {
       key: "facebook",
       label: dict.channels.facebook,
-      value: "facebook.com/travelwithme",
+      value: "Travel With Me",
       href: contact.facebook,
       Icon: FacebookIcon,
+      tile: socialTile.facebook,
+      external: true,
+    },
+    {
+      key: "instagram",
+      label: dict.channels.instagram,
+      value: contact.instagramHandle,
+      href: contact.instagram,
+      Icon: InstagramIcon,
+      tile: socialTile.instagram,
       external: true,
     },
   ];
@@ -182,22 +205,24 @@ function ContactDialog({ dict, onClose }: { dict: Dictionary; onClose: () => voi
         </div>
 
         <ul className="flex flex-col">
-          {channels.map(({ key, label, value, href, Icon, external }) => (
+          {channels.map(({ key, label, value, href, Icon, tile, external }) => (
             <li key={key} className="border-b border-line last:border-b-0">
               <a
                 href={href}
                 {...(external ? { target: "_blank", rel: "noreferrer noopener" } : {})}
                 className="group flex items-center gap-4 px-6 py-5 transition hover:bg-cream sm:gap-5 sm:px-9 sm:py-6"
               >
-                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-cream text-ink transition duration-300 group-hover:bg-accent group-hover:text-white">
-                  <Icon className="h-5 w-5" />
+                <span
+                  className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl transition duration-300 group-hover:-rotate-6 group-hover:scale-110 ${tile}`}
+                >
+                  <Icon className="h-[22px] w-[22px]" />
                 </span>
 
                 <span className="min-w-0 flex-1">
                   <span className="block text-[11px] uppercase tracking-[0.18em] text-muted">
                     {label}
                   </span>
-                  <span className="display mt-1 block truncate text-lg font-medium text-ink sm:text-xl">
+                  <span className="display mt-1 block truncate pb-[0.15em] text-lg font-medium text-ink sm:text-xl">
                     {value}
                   </span>
                 </span>

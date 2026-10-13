@@ -403,7 +403,8 @@
     "submit": "Get a programme",
     "mailSubject": "Travel programme request",
     "call": "Call us",
-    "facebook": "Message on Facebook"
+    "facebook": "Message on Facebook",
+    "instagram": "Follow on Instagram"
   },
   "footer": {
     "tagline": "Outbound and domestic tours, custom programmes and visa support — Travel With Me LLC.",
@@ -449,6 +450,7 @@
     "phone": "Phone",
     "email": "Email",
     "facebook": "Facebook",
+    "instagram": "Instagram",
     "note": "We answer in Mongolian, English and Korean."
   }
 }

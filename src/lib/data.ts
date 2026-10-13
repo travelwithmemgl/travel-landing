@@ -269,6 +269,8 @@ export const contact = {
   phoneHref: "tel:+97691772040",
   email: "twithmellc@gmail.com",
   facebook: "https://www.facebook.com/profile.php?id=61572250031542",
+  instagram: "https://www.instagram.com/hamtdaa_aylay/",
+  instagramHandle: "@hamtdaa_aylay",
 } as const;
 
 export const footerColumnKeys = ["explore", "company", "support"] as const;
