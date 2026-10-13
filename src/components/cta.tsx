@@ -28,7 +28,7 @@ export function CallToAction({ dict }: { dict: Dictionary }) {
           </h2>
           <p className="mt-5 max-w-md text-sm leading-relaxed text-white/90">{dict.cta.body}</p>
 
-          <div className="mt-9 flex w-full max-w-md flex-col items-stretch gap-2.5 sm:w-auto sm:flex-row sm:items-center">
+          <div className="mt-9 flex w-full max-w-md flex-col items-stretch gap-2.5 sm:w-auto sm:max-w-none sm:flex-row sm:items-center">
             <a
               href={mailto}
               className="focus-light flex min-h-12 items-center justify-center gap-1.5 rounded-full bg-white px-7 text-[13px] font-medium text-ink transition hover:bg-cream"
@@ -40,7 +40,7 @@ export function CallToAction({ dict }: { dict: Dictionary }) {
 
             <a
               href={contact.phoneHref}
-              className="focus-light flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/40 px-6 text-[13px] font-medium text-white transition hover:bg-white/15"
+              className="focus-light flex min-h-12 items-center justify-center gap-2 whitespace-nowrap rounded-full border border-white/40 px-6 text-[13px] font-medium text-white transition hover:bg-white/15"
             >
               <PhoneIcon className="h-4 w-4" />
               <span className="sm:hidden">{dict.cta.call}</span>
